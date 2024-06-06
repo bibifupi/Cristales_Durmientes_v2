@@ -1,4 +1,3 @@
-
 <div class="contenedor">
     <div class=cristales>
         <p>Cristales <br>Durmientes</p>
@@ -6,28 +5,22 @@
 
     <div class="login">
         <img src="..\assets\joyitas-sin-fondo.png" class="joyitas" alt="Joyitas cabecera">
-        
-        <form class="loginform">
-            <p class="titulo">
-                ¡Bienvenid&#64;!
-            </p>
-            <h5>Introduce tu correo electrónico y contraseña para iniciar sesión.</h5>
-           
-            <input type="email" name="email" placeholder="Correo electrónico" title="Correo electrónico" required>
 
+        <form class="loginform">
+            <h3 class="titulo">
+                ¡Bienvenid&#64;s!
+            </h3>
+            <h5>Introduce tu correo electrónico y contraseña para iniciar sesión.</h5>
+            <label>Correo electrónico</label>
+            <input type="email" name="email" placeholder="Correo electrónico" title="Correo electrónico" required>
+            <label>Contraseña</label>
             <input type="password" name="password" placeholder="Contraseña" title="Contraseña" required><br><br>
 
-            <button class="button" type="submit" id="login">Iniciar sesión</button><br>
+            <button class="button iniciar-sesion" type="submit">Iniciar sesión</button>
         </form>
         <br>
-        <button id="registro" class="button" onclick="location.href='/registro'">Crear nuevo usuario</button>
+        <button class="button registro" onclick="location.href='/registro'">Crear nuevo usuario</button>
         <br>
-        <br>
-        <img class="joyitas" src="../assets/joyitas-sin-fondo.png" alt="Joyitas final"/>
-        <br>
-        <button id="perfil" class="button" onclick="location.href='/perfil'">PERFIL</button>
-
+        <img class="joyitas" src="../assets/joyitas-sin-fondo.png" alt="Joyitas final" />
     </div>
-</div>    
-
-
+</div>
