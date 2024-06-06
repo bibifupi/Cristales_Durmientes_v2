@@ -3,29 +3,30 @@ const cartas = document.querySelectorAll(".carta");
 let matched = 0;
 let cartaOne, cartaTwo;
 let disableDeck = false;
-var solucionado = false;
 
-function flipCarta({ target: clickedCarta }) {
-    if (cartaOne !== clickedCarta && !disableDeck) {
+function flipCarta({target: clickedCarta}) {
+    if(cartaOne !== clickedCarta && !disableDeck) {
         clickedCarta.classList.add("flip");
-        if (!cartaOne) {
+        if(!cartaOne) {
             return cartaOne = clickedCarta;
         }
         cartaTwo = clickedCarta;
         disableDeck = true;
         let cartaOneImg = cartaOne.querySelector(".back-vista img").src,
-            cartaTwoImg = cartaTwo.querySelector(".back-vista img").src;
+        cartaTwoImg = cartaTwo.querySelector(".back-vista img").src;
         matchCartas(cartaOneImg, cartaTwoImg);
     }
 }
 
 function matchCartas(img1, img2) {
-    if (img1 === img2) {
+    if(img1 === img2) {
         matched++;
-        if (matched == 8) {
+        if(matched == 8) {
             setTimeout(() => {
                 window.alert("¡Felicidades, lo has conseguido!");
-                solucionado=true;
+                window.location.href = 'N:/2º DAW/Proyecto/Pokemon/Cristales_Durmientes/index.html';
+                sessionStorage.setItem('puzzle1Completed', 'true');
+
             }, 1000);
         }
         cartaOne.removeEventListener("click", flipCarta);
@@ -61,7 +62,7 @@ function shuffleCarta() {
 }
 
 shuffleCarta();
-
+    
 cartas.forEach(carta => {
     carta.addEventListener("click", flipCarta);
 });

@@ -1,4 +1,9 @@
-
+class Player {
+    constructor(){
+        this.time = 0;
+        
+    }
+}
 class Sprite {
     constructor( { position, velocity, image, frames = {max: 1}, sprites} ){
         this.position = position

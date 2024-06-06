@@ -1,9 +1,7 @@
 @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap');
-
-* {
+*{
   font-family: 'Poppins', sans-serif;
 }
-
 dialog {
   width: 500px;
   height: 500px;
@@ -41,7 +39,7 @@ h1 {
 #torres {
   color: #ffc6c6;
   display: flex;
-  justify-content: space-evenly;
+  justify-content:space-evenly;
 }
 
 .base {
@@ -62,7 +60,7 @@ h1 {
   padding-top: 50px;
   margin: 10px 0 0 25px;
   position: inherit;
-  justify-content: space-evenly;
+  justify-content:space-evenly;
 
 }
 
@@ -122,19 +120,18 @@ h1 {
   margin: auto;
 }
 
-#box {
+/* #box {
   font-size: 30px;
   text-align: center;
   height: 20px;
   width: 50px;
   font-family: 'Poppins', sans-serif;
-}
-
-#restart {
+} */
+/* #restart {
   margin: auto;
 }
 
 .buttons:hover {
   margin: auto;
   opacity: 1;
-}
+} */

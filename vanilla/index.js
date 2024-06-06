@@ -4,30 +4,8 @@ const context = canvas.getContext('2d');
 canvas.width = 1024
 canvas.height = 576
 
-//Creación de una submatriz para las colisiones
-const collisionMap = []
-for (let i = 0; i < collisions.length; i+= 70){
-    collisionMap.push(collisions.slice(i, 70 + i))
-}
-
-    //PUZZLES Colisiones
-
-const puzzleZonesMap1 = []
-for (let i = 0; i < puzzleZonesData1.length; i+= 70){
-    puzzleZonesMap1.push(puzzleZonesData1.slice(i, 70 + i))
-}
-const puzzleZonesMap2 = []
-for (let i = 0; i < puzzleZonesData2.length; i+= 70){
-    puzzleZonesMap2.push(puzzleZonesData2.slice(i, 70 + i))
-}
-const puzzleZonesMap3 = [];
-for (let i = 0; i < puzzleZonesData3.length; i += 70){
-    puzzleZonesMap3.push(puzzleZonesData3.slice(i, 70 + i));
-}
-const tetrisZonesMap = []
-for (let i = 0; i < tetrisZonesData.length; i+= 70){
-    tetrisZonesMap.push(tetrisZonesData.slice(i, 70 + i))
-}
+    /*  COLISIONES */
+/*  Colisiones elementos del Mapa */
 
 const boundaries = []
 const offset = {
@@ -35,6 +13,10 @@ const offset = {
     y: -580
 }
 
+const collisionMap = []
+for (let i = 0; i < collisions.length; i+= 70){
+    collisionMap.push(collisions.slice(i, 70 + i))
+}
 collisionMap.forEach((row, i) => {
     row.forEach((symbol, j) => {
         if (symbol === 1025){
@@ -50,6 +32,12 @@ collisionMap.forEach((row, i) => {
     })
 })
 
+/*  Colisiones zonas de Acertijos */
+
+const puzzleZonesMap1 = []
+for (let i = 0; i < puzzleZonesData1.length; i+= 70){
+    puzzleZonesMap1.push(puzzleZonesData1.slice(i, 70 + i))
+}
 const puzzleZones1 = []
 puzzleZonesMap1.forEach((row, i) => {
     row.forEach((symbol, j) => {
@@ -65,6 +53,10 @@ puzzleZonesMap1.forEach((row, i) => {
         }
     })
 })
+const puzzleZonesMap2 = []
+for (let i = 0; i < puzzleZonesData2.length; i+= 70){
+    puzzleZonesMap2.push(puzzleZonesData2.slice(i, 70 + i))
+}
 const puzzleZones2 = []
 puzzleZonesMap2.forEach((row, i) => {
     row.forEach((symbol, j) => {
@@ -80,6 +72,10 @@ puzzleZonesMap2.forEach((row, i) => {
         }
     })
 })
+const puzzleZonesMap3 = [];
+for (let i = 0; i < puzzleZonesData3.length; i += 70){
+    puzzleZonesMap3.push(puzzleZonesData3.slice(i, 70 + i));
+}
 const puzzleZones3 = [];
 puzzleZonesMap3.forEach((row, i) => {
     row.forEach((symbol, j) => {
@@ -95,6 +91,10 @@ puzzleZonesMap3.forEach((row, i) => {
         }
     });
 });
+const tetrisZonesMap = []
+for (let i = 0; i < tetrisZonesData.length; i+= 70){
+    tetrisZonesMap.push(tetrisZonesData.slice(i, 70 + i))
+}
 const tetrisZones = [];
 tetrisZonesMap.forEach((row, i) => {
     row.forEach((symbol, j) => {
@@ -111,16 +111,38 @@ tetrisZonesMap.forEach((row, i) => {
     });
 });
 
+/*  FUNCIÓN DE COLISIÓN */
+function rectangularCollision({rectangle1, rectangle2}){
+    return (
+        rectangle1.position.x + rectangle1.width >= rectangle2.position.x 
+        && rectangle1.position.x <= rectangle2.position.x + rectangle2.width
+        && rectangle1.position.y <= rectangle2.position.y + rectangle2.height 
+        && rectangle1.position.y + rectangle2.height >= rectangle2.position.y
+    )
+}
 
-
-//importar la imagen de nuestro mapa
+/*  IMAGENES  */
+/*  Mapa */
 const image = new Image()
 image.src = './img/Pellet_Town.png'
-
-const foregroundImage = new Image()                                      
+const background = new Sprite( {
+    position: {
+        x: offset.x, 
+        y: offset.y
+    },
+    image: image
+}) 
+const foregroundImage = new Image()                         
 foregroundImage.src = './img/foregroundObjects.png'
+const foreground = new Sprite( {             
+    position: {
+        x: offset.x, 
+        y: offset.y 
+    },
+    image: foregroundImage
+}) 
 
-
+/*  Personaje */
 const playerDownImage = new Image()
 playerDownImage.src = "./img/playerDown.png"
 const playerUpImage = new Image()
@@ -129,8 +151,6 @@ const playerLeftImage = new Image()
 playerLeftImage.src = "./img/playerLeft.png"
 const playerRightImage = new Image()
 playerRightImage.src = "./img/playerRight.png"
-
-
 const player = new Sprite({
     position: {
         x: canvas.width /3 - 192 /4 /2.5, 
@@ -151,97 +171,57 @@ const player = new Sprite({
 })
 
 
-const background = new Sprite( {
-    position: {
-        x: offset.x, 
-        y: offset.y
-    },
-    image: image
-}) 
-
- const foreground = new Sprite( {             
-    position: {
-        x: offset.x, 
-        y: offset.y 
-    },
-    image: foregroundImage
-}) 
-
-
-//Variables de control
-const keys = {
-    w: {
-        pressed: false
-    },
-    a: {
-        pressed: false
-    },
-    s: {
-        pressed: false
-    },
-    d: {
-        pressed: false
-    }
-}
-
-
+/*  Variables control Personaje */
 const movables =[background, ...boundaries, foreground, ...puzzleZones1, ...puzzleZones2, ...puzzleZones3, ...tetrisZones]
-
-function rectangularCollision({rectangle1, rectangle2}){
-    return (
-        rectangle1.position.x + rectangle1.width >= rectangle2.position.x 
-        && rectangle1.position.x <= rectangle2.position.x + rectangle2.width
-        && rectangle1.position.y <= rectangle2.position.y + rectangle2.height 
-        && rectangle1.position.y + rectangle2.height >= rectangle2.position.y
-    )
+const keys = {
+    w: { pressed: false },
+    a: { pressed: false },
+    s: { pressed: false },
+    d: { pressed: false }
 }
-
 
 const puzzle1 = { initiated: false}
+function checkPuzzle1Status() {
+    return sessionStorage.getItem('puzzle1Completed') === 'true';
+}
 const puzzle2 = { initiated: false }
+function checkPuzzle2Status() {
+    return sessionStorage.getItem('puzzle2Completed') === 'true';
+}
 const puzzle3 = { initiated: false }
+function checkPuzzle3Status() {
+    return sessionStorage.getItem('puzzle3Completed') === 'true';
+}
 const tetris = { initiated: false }
 
 
-//CONTROL DEL PERSONAJE
+function checkPuzzle3Status() {
+    return sessionStorage.getItem('acertijo3Completo') === 'true';
+}
+
+/*  ANIMACIONES */
 function animate() {
+
+    /* Capas del Mapa y Personaje */
     const animationId = window.requestAnimationFrame(animate); 
     background.draw();
+    player.draw();
+    foreground.draw();  
     boundaries.forEach((boundary) => {
         boundary.draw();
     });
+    let moving = true;
+    player.moving = false;
 
+    
+    /*  Animación de Acertijos */
+    /*  ACERTIJO 1 */
     puzzleZones1.forEach((puzzleZone1) => {
         puzzleZone1.draw();
     });
 
-    puzzleZones2.forEach((puzzleZone2) => {
-        puzzleZone2.draw();
-    });
-    
-    puzzleZones3.forEach((puzzleZone3) => {
-        puzzleZone3.draw();
-    });
-
-    tetrisZones.forEach((tetrisZones) => {
-        tetrisZones.draw();
-    });
-    
-
-    player.draw();
-    foreground.draw();  
-
-    let moving = true;
-    player.moving = false;
-
-    //ENTRAR A LOS ACERTIJOS
     if (puzzle1.initiated) return;
-    if (puzzle2.initiated) return;
-    if (puzzle3.initiated) return;
-    if (tetris.initiated) return;
-    
-    
-    //ACERTIJO 1
+
     if (keys.w.pressed || keys.a.pressed || keys.s.pressed || keys.d.pressed) {
         for (let i = 0; i < puzzleZones1.length; i++) {
             const puzzleZone1 = puzzleZones1[i];
@@ -258,8 +238,12 @@ function animate() {
                 }) 
                 && overlappingArea > (player.width * player.height) / 2 && Math.random() < 0.01
             ) {
-                console.log('Puzzle Zone 1');
-
+                //Comprobar si ya se ha realizado el acertijo
+                if (checkPuzzle1Status()) {
+                    alert("Ya superaste la prueba");
+                    return;
+                }
+    
                 // Inicializar acertijo1
                 window.cancelAnimationFrame(animationId);
                 puzzle1.initiated = true;
@@ -282,8 +266,14 @@ function animate() {
             }
         }
     }
+    
+    /*  ACERIJO 2 */
+    puzzleZones2.forEach((puzzleZone2) => {
+        puzzleZone2.draw();
+    });
 
-    //ACERTIJO 2
+    if (puzzle2.initiated) return;
+
     if (keys.w.pressed || keys.a.pressed || keys.s.pressed || keys.d.pressed) {
         for (let i = 0; i < puzzleZones2.length; i++) {
             const puzzleZone2 = puzzleZones2[i];
@@ -300,7 +290,11 @@ function animate() {
                 }) 
                 && overlappingArea2 > (player.width * player.height) / 2 && Math.random() < 0.01
             ) {
-                console.log('Puzzle Zone 2');
+                //Comprobar si ya se ha realizado el acertijo
+                if (checkPuzzle2Status()) {
+                    alert("Ya superaste la prueba");
+                    return;
+                }
 
                 // Inicializar acertijo2
                 window.cancelAnimationFrame(animationId);
@@ -324,8 +318,14 @@ function animate() {
             }
         }
     }
+    
+    /*  ACERTIJO 3 */
+    puzzleZones3.forEach((puzzleZone3) => {
+        puzzleZone3.draw();
+    });
 
-    //ACERTIJO 3
+    if (puzzle3.initiated) return;
+
     if (keys.w.pressed || keys.a.pressed || keys.s.pressed || keys.d.pressed) {
         for (let i = 0; i < puzzleZones3.length; i++) {
             const puzzleZone3 = puzzleZones3[i];
@@ -342,32 +342,43 @@ function animate() {
                 })
                 && overlappingArea3 > (player.width * player.height) / 2 && Math.random() < 0.01
             ) {
-                console.log('Puzzle Zone 3');
 
-                // Inicializar acertijo3
-                window.cancelAnimationFrame(animationId);
-                puzzle3.initiated = true;
-                gsap.to('#overlappingDiv', {
-                    opacity: 1,
-                    repeat: 3,
-                    yoyo: true,
-                    duration: 0.4,
-                    onComplete() {
-                        gsap.to('#overlappingDiv', {
-                            opacity: 1,
-                            duration: 0.4,
-                            onComplete() {
-                                animatePuzzle3();
-                            }
-                        });
-                    }
-                });
-                break;
+                //Comprobar si ya se ha realizado el acertijo
+                if (checkPuzzle3Status()) {
+                    alert("Ya superaste la prueba");
+                    return;
+                }
+    
+            // Inicializar acertijo3
+            window.cancelAnimationFrame(animationId);
+            puzzle3.initiated = true;
+            gsap.to('#overlappingDiv', {
+                opacity: 1,
+                repeat: 3,
+                yoyo: true,
+                duration: 0.4,
+                onComplete() {
+                    gsap.to('#overlappingDiv', {
+                        opacity: 1,
+                        duration: 0.4,
+                        onComplete() {
+                            animatePuzzle3();
+                        }
+                    });
+                }
+            });
+            break;
             }
         }
     }
 
-    //TETRIS
+    /*  TETRIS */
+    tetrisZones.forEach((tetrisZone) => {
+        tetrisZone.draw();
+    });
+
+    if (tetris.initiated) return;
+
     if (keys.w.pressed || keys.a.pressed || keys.s.pressed || keys.d.pressed) {
         for (let i = 0; i < tetrisZones.length; i++) {
             const tetrisZone = tetrisZones[i];
@@ -385,9 +396,11 @@ function animate() {
                 && overlappingAreaTetris > (player.width * player.height) / 2 && Math.random() < 0.01
             ) {
                 console.log('Tetris');
+                alert("Debes demostrar antes tu intelecto");
+
 
                 // Inicializar Tetris
-                window.cancelAnimationFrame(animationId);
+                /* window.cancelAnimationFrame(animationId);
                 tetris.initiated = true;
                 gsap.to('#overlappingDiv', {
                     opacity: 1,
@@ -404,22 +417,20 @@ function animate() {
                         });
                     }
                 });
-                break;
+                break; */
             }
         }
     }
 
 
-
-    //MOVIMIENTO DEL PERSONAJE
+    /* Animación del Personaje */
+        /* Arriba */
     if (keys.w.pressed && lastKey === 'w'){
         player.moving = true
         player.image = player.sprites.up
-        //COLISIóN CON LOS OBJETOS
         for (let i = 0; i < boundaries.length; i++) {
             const boundary = boundaries[i]
-            if (
-              rectangularCollision({
+            if ( rectangularCollision({
                 rectangle1: player,
                 rectangle2: {
                   ...boundary,
@@ -434,20 +445,18 @@ function animate() {
               break
             }
         }
-
         if (moving)
         movables.forEach((movable) => {
             movable.position.y += 3
         })
-            
+        /* Izquierda */
     } else if (keys.a.pressed && lastKey === 'a'){
         player.moving = true
         player.image = player.sprites.left
         for (let i = 0; i < boundaries.length; i++) {
             const boundary = boundaries[i]
-            if (
-              rectangularCollision({
-                rectangle1: player,
+            if ( rectangularCollision({
+                rectangle1: player, 
                 rectangle2: {
                   ...boundary,
                   position: {
@@ -461,20 +470,18 @@ function animate() {
               break
             }
         }
-    
         if (moving)
         movables.forEach((movable) => {
             movable.position.x += 3
         })
-            
+        /* Abajo */  
     } else if (keys.s.pressed && lastKey === 's'){
         player.moving = true
         player.image = player.sprites.down
         for (let i = 0; i < boundaries.length; i++) {
             const boundary = boundaries[i]
-            if (
-              rectangularCollision({
-                rectangle1: player,
+            if ( rectangularCollision({
+                rectangle1: player, 
                 rectangle2: {
                   ...boundary,
                   position: {
@@ -488,19 +495,17 @@ function animate() {
               break
             }
         }
-    
         if (moving)
         movables.forEach((movable) => {
             movable.position.y -= 3
         })
-           
+        /* Derecha */
     } else if (keys.d.pressed && lastKey === 'd'){
         player.moving = true
         player.image = player.sprites.right
         for (let i = 0; i < boundaries.length; i++) {
             const boundary = boundaries[i]
-            if (
-              rectangularCollision({
+            if (rectangularCollision({
                 rectangle1: player,
                 rectangle2: {
                   ...boundary,
@@ -515,7 +520,6 @@ function animate() {
               break
             }
         }
-      
         if (moving)
         movables.forEach((movable) => {
             movable.position.x -= 3
@@ -524,73 +528,44 @@ function animate() {
 }
 animate()
 
-//PUZZLE1
+/*  FUNCIONES AL ENTRAR A ZONAS DE ACERTIJOS */
 function animatePuzzle1() {
     window.requestAnimationFrame(animatePuzzle1);
     window.location.href = 'acertijos/acertijo1/acertijo1.html';
-    /* Si consigue pasarlo, no puede volver a jugar */
 }
-
-//PUZZLE2
 function animatePuzzle2() {
     window.requestAnimationFrame(animatePuzzle2);
     window.location.href = 'acertijos/acertijo2/acertijo2.html';
 }
-
-//PUZZLE3
 function animatePuzzle3() {
+    
     window.requestAnimationFrame(animatePuzzle3);
     window.location.href = 'acertijos/acertijo3/acertijo3.html';
+    
 }
-
-//TETRIS
 function animateTetris() {
     window.requestAnimationFrame(animateTetris);
-    //window.location.href = 'acertijos/acertijo3/acertijo3.html';
+    //window.location.href = 'ubicacion_tetris';
 }
 
-
-
-
-//Espera de las teclas pulsadas
+/* TECLAS DE ACCIÓN-MOVIMIENTO */
 let lastKey = ''
 window.addEventListener('keydown', (e) => {
     switch(e.key) {
-        case 'w':
-            keys.w.pressed = true
-            lastKey = 'w'
-            break
-        case 'a':
-            keys.a.pressed = true
-            lastKey = 'a'
-            break
-        case 's':
-            keys.s.pressed = true
-            lastKey = 's'
-            break
-        case 'd':
-            keys.d.pressed = true
-            lastKey = 'd'
-            break
+        case 'w': keys.w.pressed = true; lastKey = 'w'; break;
+        case 'a': keys.a.pressed = true; lastKey = 'a'; break;
+        case 's': keys.s.pressed = true; lastKey = 's'; break;
+        case 'd': keys.d.pressed = true; lastKey = 'd'; break;
     }
 })
 
 window.addEventListener('keyup', (e) => {
     switch(e.key) {
-        case 'w':
-            keys.w.pressed = false
-            break
-        case 'a':
-            keys.a.pressed = false
-            break
-        case 's':
-            keys.s.pressed = false
-            break
-        case 'd':
-            keys.d.pressed = false
-            break
+        case 'w': keys.w.pressed = false; break;
+        case 'a': keys.a.pressed = false; break;
+        case 's': keys.s.pressed = false; break;
+        case 'd': keys.d.pressed = false; break;
     }
-    
 })
 
 

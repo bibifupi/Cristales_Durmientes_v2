@@ -1,5 +1,4 @@
 window.addEventListener("DOMContentLoaded", () => {
-  var solucionado = false;
   const points = document.querySelectorAll(".point");
   const svgContainer = document.getElementById("svgContainer");
   let isDrawing = false;
@@ -7,6 +6,7 @@ window.addEventListener("DOMContentLoaded", () => {
   let startPoint = null;
   let startID = null;
   let cuerdas = [];
+  let winner = false;
 
   function startDraw(e) {
     if (cuerdas.length >= 3) {
@@ -71,7 +71,9 @@ window.addEventListener("DOMContentLoaded", () => {
 
     if (conexiones === conexionesNecesarias.length) {
       window.alert("¡Felicidades, lo has conseguido!");
-      solucionado = true;
+      window.location.href = 'N:/2º DAW/Proyecto/Pokemon/Cristales_Durmientes/index.html';
+      sessionStorage.setItem('puzzle3Completed', 'true');
+      winner = true;
     }
   }
 
@@ -81,5 +83,5 @@ window.addEventListener("DOMContentLoaded", () => {
   });
   svgContainer.addEventListener("click", endDraw);
   svgContainer.addEventListener("mousemove", draw);
-
+  
 });
