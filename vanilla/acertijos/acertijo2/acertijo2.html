@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <title>Una pila de discos en el suelo</title>
+  <link href="https://fonts.googleapis.com/css?family=Lato" rel="stylesheet">
+  <link rel="stylesheet" type="text/css" href="acertijo2.css">
+</head>
+
+<body>
+  <button class="resetear" onclick="window.location.reload();">Resetear</button>
+  <dialog open>
+  <div id="canvas">
+    <div id="title">
+      
+      <h1>Una pila de discos en el suelo</h1></div>
+
+    <div class="movimientos"></div>
+    </br>
+    </br>
+    <div id="torres">
+      <div class="t" value="0">
+        <ul id="t1" value="0" class="base">
+          <ul class="linea1">
+          </ul>
+        </ul>
+      </div>
+      <div class="t" value="1">
+        <ul id="t2" value="1" class="base">
+          <ul class="linea2"></ul>
+        </ul>
+      </div>
+      <div class="t" value="2">
+        <ul id="t3" value="2" class="base">
+          <ul class="linea3"></ul>
+        </ul>
+      </div>
+    </div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script type="text/javascript" src="acertijo2.js"></script>
+  </dialog>
+  </div>
+</body>
+
+</html>

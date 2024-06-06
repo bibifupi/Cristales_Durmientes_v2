@@ -1,2 +1,33 @@
-<p>login works!</p>
-<img src="../../assets/joyitas-sin-fondo.png" alt="" srcset="">
+
+<div class="contenedor">
+    <div class=cristales>
+        <p>Cristales <br>Durmientes</p>
+    </div>
+
+    <div class="login">
+        <img src="..\assets\joyitas-sin-fondo.png" class="joyitas" alt="Joyitas cabecera">
+        
+        <form class="loginform">
+            <p class="titulo">
+                ¡Bienvenid&#64;!
+            </p>
+            <h5>Introduce tu correo electrónico y contraseña para iniciar sesión.</h5>
+           
+            <input type="email" name="email" placeholder="Correo electrónico" title="Correo electrónico" required>
+
+            <input type="password" name="password" placeholder="Contraseña" title="Contraseña" required><br><br>
+
+            <button class="button" type="submit" id="login">Iniciar sesión</button><br>
+        </form>
+        <br>
+        <button id="registro" class="button" onclick="location.href='/registro'">Crear nuevo usuario</button>
+        <br>
+        <br>
+        <img class="joyitas" src="../assets/joyitas-sin-fondo.png" alt="Joyitas final"/>
+        <br>
+        <button id="perfil" class="button" onclick="location.href='/perfil'">PERFIL</button>
+
+    </div>
+</div>    
+
+

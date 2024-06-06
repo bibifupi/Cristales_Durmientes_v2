@@ -1,0 +1,138 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap');
+
+dialog {
+  width: 500px;
+  height: 500px;
+  position: relative;
+  border: none;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: 'Poppins', sans-serif;
+}
+
+h2 {
+  position:inherit;
+  top: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  text-align: center;
+}
+
+body {
+    margin: 0;
+    padding: 0;
+    justify-content: center;
+    align-items: center;
+}
+
+#container {
+  margin: 0 auto;
+  width: 450px;
+  height: 450px;
+}
+
+svg {
+  position: inherit;
+  border-radius: 10px;
+  top: 50px;
+  left: 0;
+  height: 100%;
+  width: 100%;
+  background-image: url("fondocajas.png");
+  background-size: cover;
+  background-repeat: no-repeat;
+}
+
+.point {
+  position: relative;
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background-color: brown;
+}
+
+#point1 {
+  bottom: 449px;
+  left: 111px;
+}
+
+#point2 {
+  bottom: 36px;
+  left: 290px;
+}
+
+#point3 {
+  bottom: 439px;
+  left: 312px;
+}
+
+#point4 {
+  bottom: 42px;
+  left: 104px;
+}
+#point5 {
+  bottom: 344px;
+  left: 369px;
+}
+#point6 {
+  bottom: 332px;
+  left: -55px;
+}
+
+#point7 {
+  bottom: 48px;
+  left: -20px;
+}
+
+#point8 {
+  bottom: 90px;
+  left: -77px;
+}
+
+#point9 {
+  bottom: 102px;
+  left: -35px;
+}
+
+#point10 {
+  bottom: 151px;
+  left: -100px;
+}
+
+#point11 {
+  bottom: 252px;
+  left: -96px;
+}
+
+#point12 {
+  bottom: 433px;
+  left: 1px;
+}
+
+#point13 {
+  bottom: 102px;
+  left: 165px;
+}
+
+#point14 {
+  bottom: 36px;
+  left: 195px;
+}
+#point15 {
+  bottom: 126px;
+  left: 214px;
+}
+
+#point16 {
+  bottom: 246px;
+  left: 212px;
+}
+
+#point17 {
+  bottom: 296px;
+  left: 139px;
+}
