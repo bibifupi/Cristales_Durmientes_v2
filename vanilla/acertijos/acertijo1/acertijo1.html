@@ -9,9 +9,13 @@
 </head>
 
 <body>
+  
   <dialog open>
+    
     <div class="title">
       <h1>Busca las parejas</h1>
+      <div class="pista"><button onclick="pista()">Pista</button></div>
+    
     </div>
     <div class="contenedor">
       <ul class="cartas">
@@ -147,7 +151,13 @@
     </div>
 
     <script src="acertijo1.js"></script>
-  
+    
 </body>
 </dialog>
+<div id="alert-box" class="alert">
+  <div class="alert-content">
+    <span class="alert-close" onclick="hideAlert()"><bold>  X  </bold></span>
+    Elije dos cartas para que se volteen. Si son la misma, las has emparejado. <br> El objetivo es que queden todas las cartas emparejadas.
+  </div>
+</div>
 </html>

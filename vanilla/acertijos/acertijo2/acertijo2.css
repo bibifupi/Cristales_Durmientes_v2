@@ -1,16 +1,25 @@
 @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap');
-*{
+
+* {
   font-family: 'Poppins', sans-serif;
 }
+
 dialog {
   width: 500px;
   height: 500px;
   position: relative;
   border: none;
+  z-index: auto;
 }
 
 body {
-  background-color: #e1e1f4;
+  background-color: #7937ba;
+  width: 500px;
+  height: 500px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
 }
 
 #canvas {
@@ -39,7 +48,7 @@ h1 {
 #torres {
   color: #ffc6c6;
   display: flex;
-  justify-content:space-evenly;
+  justify-content: space-evenly;
 }
 
 .base {
@@ -60,7 +69,7 @@ h1 {
   padding-top: 50px;
   margin: 10px 0 0 25px;
   position: inherit;
-  justify-content:space-evenly;
+  justify-content: space-evenly;
 
 }
 
@@ -118,6 +127,81 @@ h1 {
   font-size: 20px;
   color: #515ca3;
   margin: auto;
+}
+
+button {
+  appearance: none;
+  background-color: #FFFFFF;
+  border-radius: 40em;
+  border-style: none;
+  box-shadow: #D8B6F9 0 -12px 6px inset;
+  box-sizing: border-box;
+  color: #000000;
+  cursor: pointer;
+  display: inline-block;
+  margin: 0;
+  outline: none;
+  quotes: auto;
+  text-align: center;
+  text-decoration: none;
+  transition: all .15s;
+  user-select: none;
+  -webkit-user-select: none;
+  touch-action: manipulation;
+  cursor:help;
+}
+
+.resetear {
+  width: 50%;
+  cursor:pointer;
+}
+
+button:hover {
+  background-color: #D8B6F9;
+  box-shadow: #49068c 0 -6px 8px inset;
+  transform: scale(1.125);
+}
+
+button:active {
+  transform: scale(1.025);
+}
+
+@media (min-width: 768px) {
+  button {
+    font-size: 1rem;
+    padding: .50rem 1.25rem;
+  }
+}
+#alert-box {
+  position: absolute;
+  max-width: 300px;
+  transform: translate(0%, 0%);
+}
+
+.alert {
+  display: none;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background-color: #D8B6F9;
+  color: #7937ba;
+  padding: 20px;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+  box-shadow: 0 2px 5px #7937ba;
+  z-index: 2;
+}
+
+.alert-content {
+  padding: 10px;
+}
+
+.alert-close {
+  float: right;
+  cursor:pointer;
+  font-size: 20px;
+  color: #B1FFDA;
+  text-shadow: 2px 2px 2px #7937ba;
 }
 
 /* #box {

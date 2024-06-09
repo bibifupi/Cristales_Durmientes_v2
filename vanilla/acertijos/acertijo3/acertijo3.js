@@ -85,3 +85,24 @@ window.addEventListener("DOMContentLoaded", () => {
   svgContainer.addEventListener("mousemove", draw);
   
 });
+
+function pista() {
+  document.getElementById('alert-box').style.display = 'flex';
+  document.getElementById('alert-box').style.flexDirection = 'column';
+  document.getElementById('alert-box').style.alignItems = 'center';
+  document.getElementById('alert-box').style.justifyContent = 'center';
+
+  const dialog = document.querySelector('dialog');
+  const alertBox = document.getElementById('alert-box');
+  const dialogRect = dialog.getBoundingClientRect();
+  const alertWidth = alertBox.offsetWidth;
+  const alertHeight = alertBox.offsetHeight;
+
+  alertBox.style.position = 'absolute';
+  alertBox.style.top = `${(dialogRect.height - alertHeight) / 2}px`;
+  alertBox.style.left = `${(dialogRect.width - alertWidth) / 2}px`;
+}
+
+function hideAlert() {
+  document.getElementById('alert-box').style.display = 'none';
+}

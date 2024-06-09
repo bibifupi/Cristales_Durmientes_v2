@@ -1,17 +1,17 @@
 @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap');
 
-dialog {
-  width: 500px;
-  height: 500px;
-  position: relative;
-  border: none;
-}
-
 * {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
   font-family: 'Poppins', sans-serif;
+}
+
+dialog {
+  width: 500px;
+  height: 550px;
+  position: relative;
+  border: none;
 }
 
 h2 {
@@ -25,8 +25,9 @@ h2 {
 body {
     margin: 0;
     padding: 0;
-    justify-content: center;
-    align-items: center;
+    background-color: #7937ba;
+    width: 500px;
+    height: 500px;
 }
 
 #container {
@@ -135,4 +136,117 @@ svg {
 #point17 {
   bottom: 296px;
   left: 139px;
+}
+.pista{
+  display:flex;
+  justify-content: flex-end;
+  appearance: none;
+  background-color: #FFFFFF;
+  border-radius: 40em;
+  border-style: none;
+  box-shadow: #D8B6F9 0 -12px 6px inset;
+  box-sizing: border-box;
+  color: #000000;
+  cursor: pointer;
+  display: inline-block;
+  margin-top: 10px;
+  outline: none;
+  quotes: auto;
+  text-align: center;
+  text-decoration: none;
+  transition: all .15s;
+  user-select: none;
+  -webkit-user-select: none;
+  touch-action: manipulation;
+  cursor:help;
+}
+
+.pista:hover {
+  background-color: #D8B6F9;
+  box-shadow: #49068c 0 -6px 8px inset;
+  transform: scale(1.125);
+}
+
+.pista:active {
+  transform: scale(1.025);
+}
+
+@media (min-width: 768px) {
+  .pista {
+    font-size: 1rem;
+    padding: .50rem 1.25rem;
+  }
+}
+
+.resetear {
+  appearance: none;
+  background-color: #FFFFFF;
+  border-radius: 40em;
+  border-style: none;
+  box-shadow: #D8B6F9 0 -12px 6px inset;
+  box-sizing: border-box;
+  color: #000000;
+  cursor: pointer;
+  display: inline-block;
+  margin-left: 10px;
+  margin-top: 10px;
+  outline: none;
+  quotes: auto;
+  text-align: center;
+  text-decoration: none;
+  transition: all .15s;
+  user-select: none;
+  -webkit-user-select: none;
+  touch-action: manipulation;
+  cursor:pointer;
+}
+
+
+.resetear:hover {
+  background-color: #D8B6F9;
+  box-shadow: #49068c 0 -6px 8px inset;
+  transform: scale(1.125);
+}
+
+.resetear:active {
+  transform: scale(1.025);
+}
+
+@media (min-width: 768px) {
+  .resetear {
+    font-size: 1rem;
+    padding: .50rem 1.25rem;
+  }
+}
+
+#alert-box {
+  position: absolute;
+  max-width: 300px;
+  transform: translate(0%, 0%);
+}
+
+.alert {
+  display: none;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background-color: #D8B6F9;
+  color: #7937ba;
+  padding: 20px;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+  box-shadow: 0 2px 5px #7937ba;
+  z-index: 2;
+}
+
+.alert-content {
+  padding: 10px;
+}
+
+.alert-close {
+  float: right;
+  cursor:pointer;
+  font-size: 20px;
+  color: #B1FFDA;
+  text-shadow: 2px 2px 2px #7937ba;
 }
