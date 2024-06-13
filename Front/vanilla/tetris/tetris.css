@@ -180,7 +180,7 @@ body {
 
 #alert-box {
   position: absolute;
-  max-width: 300px;
+  max-height: 400px;
   transform: translate(0%, 0%);
 }
 

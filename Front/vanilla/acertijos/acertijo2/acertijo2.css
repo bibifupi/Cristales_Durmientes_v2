@@ -13,7 +13,7 @@ dialog {
 }
 
 body {
-  background-color: #7937ba;
+  background-image: url(../../img/fondo.png);
   width: 500px;
   height: 500px;
   display: flex;
@@ -148,12 +148,12 @@ button {
   user-select: none;
   -webkit-user-select: none;
   touch-action: manipulation;
-  cursor:help;
+  cursor: help;
 }
 
 .resetear {
   width: 50%;
-  cursor:pointer;
+  cursor: pointer;
 }
 
 button:hover {
@@ -172,6 +172,7 @@ button:active {
     padding: .50rem 1.25rem;
   }
 }
+
 #alert-box {
   position: absolute;
   max-width: 300px;
@@ -198,7 +199,7 @@ button:active {
 
 .alert-close {
   float: right;
-  cursor:pointer;
+  cursor: pointer;
   font-size: 20px;
   color: #B1FFDA;
   text-shadow: 2px 2px 2px #7937ba;

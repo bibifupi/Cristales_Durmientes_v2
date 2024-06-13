@@ -80,7 +80,7 @@ const FORMA_PIEZAS = {
 let x = 0;
 let y = 0;
 
-let puntuacion = 20;
+let puntuacion = 15;
 let game_active = false;
 let dy = 0;
 
@@ -199,7 +199,7 @@ function draw() {
 // Comenzar la partida
 function startGame() {
   game_active = true;
-  puntuacion = 20;
+  puntuacion = 15;
   $score.innerHTML = puntuacion;
   bolsa_piezas = llenarBolsaPiezas();
   pieza = crearPiezaNueva();
@@ -340,17 +340,17 @@ function pintarBoard(key, board_x, board_y, ctx, sombra) {
       color = 2;
       ctx.fillStyle = "red";
       break;
-    case "S": // Green
+    case "S": // Lime
       color = 3;
-      ctx.fillStyle = "green";
+      ctx.fillStyle = "lime";
       break;
     case "O": // Yellow
       color = 4;
       ctx.fillStyle = "yellow";
       break;
-    case "I": // Cyan
+    case "I": // White
       color = 5;
-      ctx.fillStyle = "cyan";
+      ctx.fillStyle = "white";
       break;
     case "L": // Orange
       color = 6;
