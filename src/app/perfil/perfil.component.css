@@ -7,7 +7,6 @@
 }
 
 .cristales {
-    background-color: #D8B6F9;
     grid-column: 1;
     display: flex;
     flex-direction: column;
@@ -20,8 +19,8 @@
     text-shadow: 1px 1px 5px black;
     font-family: "Astloch";
     font-weight: bold;
-    text-align: center;
-    font-size: 8vw;
+    font-size: 3vw;
+    line-height: 1;
 }
 
 .perfil {
@@ -31,6 +30,8 @@
     justify-content: center;
     padding: 50px;
     margin: 5%;
+
+    background-color: white;
 
     -webkit-box-shadow: 0px 0px 5px 5px;
     -moz-box-shadow: 0px 0px 5px 5px;
@@ -49,17 +50,19 @@
 }
 
 .perfilform {
-    display:flex;
+    display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
 }
 
 .titulo {
+    padding: 1vw;
     font-family: "Astloch";
     font-size: 8vw;
     font-weight: bold;
-    margin:0;
+    margin: 0;
+    line-height: 1;
 }
 
 .perfil input {
@@ -84,18 +87,19 @@
     background-color: #D8B6F9;
     transition: all 0.2s ease;
     min-width: 350px;
+    font-size: large;
 }
 
 .button:active {
     transform: scale(0.96);
 }
 
-.play{
+.play {
     background-color: #B1FFDA;
 }
 
 .ranking {
-    background-color: #B1FFDA;
+    /* background-color: #B1FFDA; */
     grid-column: 1;
     display: flex;
     flex-direction: column;
@@ -104,13 +108,14 @@
     grid-column: 6/8;
 }
 
-.ranking p {
+.ranking h1 {
     color: white;
     text-shadow: 1px 1px 5px black;
     font-family: "Astloch";
     font-weight: bold;
     text-align: center;
-    font-size: 8vw;
+    font-size: 3vw;
+    line-height: 1;
 }
 
 /* 
