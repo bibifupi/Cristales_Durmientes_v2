@@ -280,7 +280,7 @@ function solidificarPieza(letra) {
         puntuacion--;
         $score.innerHTML = puntuacion;
 
-        time_step=time_step*0.9;
+        time_step = time_step * 0.9;
 
         if (puntuacion == 0) {
           puntuacion = 0;
