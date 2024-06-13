@@ -1,0 +1,107 @@
+body {
+    background-image: url(../vanilla/img/fondo.png);
+    margin: 0;
+    font-family: Roboto, "Helvetica Neue", sans-serif;
+}
+
+.logo {
+    position: absolute;
+    top: 1%;
+    right: 0%;
+}
+
+.logo img {
+    max-width: 400px;
+    margin: 0;
+}
+
+/*BOTON*/
+button {
+    appearance: none;
+    background-color: #FFFFFF;
+    border-radius: 40em;
+    border-style: none;
+    box-shadow: #D8B6F9 0 -12px 6px inset;
+    box-sizing: border-box;
+    color: #000000;
+    cursor: pointer;
+    margin: 0;
+    outline: none;
+    quotes: auto;
+    text-align: center;
+    text-decoration: none;
+    transition: all .15s;
+    user-select: none;
+    -webkit-user-select: none;
+    touch-action: manipulation;
+    cursor: help;
+    position: absolute;
+    top: 44%;
+    right: 8%;
+}
+
+button:hover {
+    background-color: #D8B6F9;
+    box-shadow: #49068c 0 -6px 8px inset;
+    transform: scale(1.125);
+}
+
+button:active {
+    transform: scale(1.025);
+}
+
+@media (min-width: 768px) {
+    button {
+        font-size: 1rem;
+        padding: .50rem 1.25rem;
+    }
+}
+
+.conseguido{
+    position: absolute;
+    top: 54%;
+    right: 12%;
+    background-color: #B1FFDA;
+    padding: 2%;
+    
+}
+
+.conseguido img{
+    max-width: 25px;
+}
+
+/* COMO JUGAR ALERTBOX */
+#alert-box {
+    position: absolute;
+    max-width: 400px;
+    transform: translate(0%, 0%);
+    top: 25%;
+    left: 18%;
+}
+
+.alert {
+    display: none;
+    top: 30%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: #D8B6F9;
+    color: #7937ba;
+    padding: 20px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    box-shadow: 0 2px 5px #7937ba(0.2);
+    z-index: 2;
+}
+
+.alert-content {
+    padding: 10px;
+    text-align: justify;
+}
+
+.alert-close {
+    float: right;
+    cursor: pointer;
+    font-size: 20px;
+    color: #B1FFDA;
+    text-shadow: 2px 2px 2px #7937ba;
+}

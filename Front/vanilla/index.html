@@ -1,30 +1,44 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Cristales Durmientes</title>
+    <link rel="stylesheet" href="index.css">
 </head>
+
 <body>
-    <style>
-        body {
-            background-color: black;
-            
-        }
-    </style>
-    <div style="display: inline-block; position: relative;">
-        <div 
-        id="overlappingDiv"
-        style="background-color: black; position: absolute; top: 0; right: 0; left: 0; bottom:0; opacity: 0; pointer-events: none;">
-        </div>
+    <!-- <div style="display: inline-block; position: relative;"> -->
+    <div style="display: flex">
+        <!-- <div id="overlappingDiv"
+            style="background-color: black; position: absolute; top: 0; right: 0; left: 0; bottom:0; opacity: 0; pointer-events: none;">
+        </div> -->
         <canvas></canvas>
-        
+        <!-- Información -->
+        <div class="contenedor">
+            <div class="logo">
+                <img src="img/Logo.png">
+            </div>
+            <div class="pista"><button onclick="pista()">¿Cómo se juega?</button></div>
+            <div class="conseguido">
+                <div class="superado1">
+                    Acertijo 1<img src="img/si.png" hidden id="superado1"></span>
+                </div>
+                <div class="superado2">
+                    Acertijo 2<img src="img/si.png" hidden id="superado2"></span>
+                </div>
+                <div class="superado3">
+                    Acertijo 3<img src="img/si.png" hidden id="superado3"></span>
+                </div>
+            </div>
+        </div>
+    </div>
     </div>
     <!-- Mapa -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js" 
-        integrity="sha512-7eHRwcbYkK4d9g/6tD/mhkf++eoTHwpNM9woBxtPUBWm67zeAfFC+HrdoE2GanKeocly/VxeLvIqwvCdk7qScg==" 
-        crossorigin="anonymous" 
-        referrerpolicy="no-referrer"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"
+        integrity="sha512-7eHRwcbYkK4d9g/6tD/mhkf++eoTHwpNM9woBxtPUBWm67zeAfFC+HrdoE2GanKeocly/VxeLvIqwvCdk7qScg=="
+        crossorigin="anonymous" referrerpolicy="no-referrer"></script>
     <!-- Acertijos -->
     <script src="data/puzzleZones1.js"></script>
     <script src="data/puzzleZones2.js"></script>
@@ -35,5 +49,20 @@
     <!-- Datos -->
     <script src="classes.js"></script>
     <script src="index.js"></script>
+
+    <!-- Cómo jugar -->
+    <div id="alert-box" class="alert">
+        <div class="alert-content">
+            <span class="alert-close" onclick="hideAlert()">
+                <bold> X </bold>
+            </span>
+            <h3>¡Bienvenido al mundo de Cristales Durmientes!</h3>
+            Usa &#8656;, &#8658;, &#8657; o &#8659; para moverte. <br>
+            Para avanzar debes buscar los <b>cofres del tesoro</b>, hay <b>3</b>, en los que aparecerá una prueba para demostrar tu ingenio. <br>
+            Una vez hayas resuelto los 3 acertijos, deberás dirigirte al <b>embarcadero</b> y montar en la barca ara enfretarte a tu desafío final antes de poder conseguir el <b>Cristal Durmiente</b> de esta zona. <br>
+            <h3>¡Buena suerte!</h3>
+        </div>
+    </div>
 </body>
+
 </html>

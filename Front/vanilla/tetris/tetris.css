@@ -180,7 +180,7 @@ body {
 
 #alert-box {
   position: absolute;
-  max-height: 400px;
+  max-width: 400px;
   transform: translate(0%, 0%);
 }
 
@@ -200,6 +200,7 @@ body {
 
 .alert-content {
   padding: 10px;
+  text-align: justify;
 }
 
 .alert-close {

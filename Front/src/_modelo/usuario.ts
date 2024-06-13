@@ -5,6 +5,5 @@ id_Usuario:number,
 username:string,
 password:string,
 imagen:string,
-tiempo:number,
 rol: rol;
 }
