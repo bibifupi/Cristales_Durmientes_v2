@@ -1,16 +1,17 @@
 const canvas = document.querySelector('canvas');
 const context = canvas.getContext('2d');
 
-canvas.width = 1024
-canvas.height = 576
+canvas.width = 1024;
+canvas.height = 576;
 
     /*  COLISIONES */
 /*  Colisiones elementos del Mapa */
 
 const boundaries = []
 const offset = {
-    x: -900,
-    y: -580
+    //x: -900, y: -580
+    x: -570, y: -300
+    
 }
 
 const collisionMap = []
@@ -32,8 +33,8 @@ collisionMap.forEach((row, i) => {
     })
 })
 
-/*  Colisiones zonas de Acertijos */
 
+/*  Colisiones zonas de Acertijos */
 const puzzleZonesMap1 = []
 for (let i = 0; i < puzzleZonesData1.length; i+= 70){
     puzzleZonesMap1.push(puzzleZonesData1.slice(i, 70 + i))
@@ -151,10 +152,11 @@ const playerLeftImage = new Image()
 playerLeftImage.src = "./img/playerLeft.png"
 const playerRightImage = new Image()
 playerRightImage.src = "./img/playerRight.png"
+
 const player = new Sprite({
     position: {
-        x: canvas.width /3 - 192 /4 /2.5, 
-        y: canvas.height /1.7 - 68 /2,
+        //x: canvas.width /3 - 192 /4 /2.5,  y: canvas.height /1.7 - 68 /2,
+        x: canvas.width /3 - 192 /4 /2.5, y: canvas.height /1.6 - 68 /2,
     },
     image: playerDownImage,
     frames: {
@@ -164,7 +166,7 @@ const player = new Sprite({
         up: playerUpImage,
         left: playerLeftImage,
         right: playerRightImage,
-        down: playerDownImage
+        down: playerDownImage,
     }
 
 
@@ -174,10 +176,10 @@ const player = new Sprite({
 /*  Variables control Personaje */
 const movables =[background, ...boundaries, foreground, ...puzzleZones1, ...puzzleZones2, ...puzzleZones3, ...tetrisZones]
 const keys = {
-    w: { pressed: false },
-    a: { pressed: false },
-    s: { pressed: false },
-    d: { pressed: false }
+    ArrowUp: { pressed: false },
+    ArrowLeft: { pressed: false },
+    ArrowDown: { pressed: false },
+    ArrowRight: { pressed: false }
 }
 
 const puzzle1 = { initiated: false}
@@ -222,7 +224,7 @@ function animate() {
 
     if (puzzle1.initiated) return;
 
-    if (keys.w.pressed || keys.a.pressed || keys.s.pressed || keys.d.pressed) {
+    if (keys.ArrowUp.pressed || keys.ArrowLeft.pressed || keys.ArrowDown.pressed || keys.ArrowRight.pressed) {
         for (let i = 0; i < puzzleZones1.length; i++) {
             const puzzleZone1 = puzzleZones1[i];
             const overlappingArea = 
@@ -274,7 +276,7 @@ function animate() {
 
     if (puzzle2.initiated) return;
 
-    if (keys.w.pressed || keys.a.pressed || keys.s.pressed || keys.d.pressed) {
+    if (keys.ArrowUp.pressed || keys.ArrowLeft.pressed || keys.ArrowDown.pressed || keys.ArrowRight.pressed) {
         for (let i = 0; i < puzzleZones2.length; i++) {
             const puzzleZone2 = puzzleZones2[i];
             const overlappingArea2 = 
@@ -326,7 +328,7 @@ function animate() {
 
     if (puzzle3.initiated) return;
 
-    if (keys.w.pressed || keys.a.pressed || keys.s.pressed || keys.d.pressed) {
+    if (keys.ArrowUp.pressed || keys.ArrowLeft.pressed || keys.ArrowDown.pressed || keys.ArrowRight.pressed) {
         for (let i = 0; i < puzzleZones3.length; i++) {
             const puzzleZone3 = puzzleZones3[i];
             const overlappingArea3 =
@@ -379,7 +381,7 @@ function animate() {
 
     if (tetris.initiated) return;
 
-    if (keys.w.pressed || keys.a.pressed || keys.s.pressed || keys.d.pressed) {
+    if (keys.ArrowUp.pressed || keys.ArrowLeft.pressed || keys.ArrowDown.pressed || keys.ArrowRight.pressed) {
         for (let i = 0; i < tetrisZones.length; i++) {
             const tetrisZone = tetrisZones[i];
             const overlappingAreaTetris = 
@@ -425,7 +427,7 @@ function animate() {
 
     /* Animación del Personaje */
         /* Arriba */
-    if (keys.w.pressed && lastKey === 'w'){
+    if (keys.ArrowUp.pressed && lastKey === 'ArrowUp'){
         player.moving = true
         player.image = player.sprites.up
         for (let i = 0; i < boundaries.length; i++) {
@@ -450,7 +452,7 @@ function animate() {
             movable.position.y += 3
         })
         /* Izquierda */
-    } else if (keys.a.pressed && lastKey === 'a'){
+    } else if (keys.ArrowLeft.pressed && lastKey === 'ArrowLeft'){
         player.moving = true
         player.image = player.sprites.left
         for (let i = 0; i < boundaries.length; i++) {
@@ -475,7 +477,7 @@ function animate() {
             movable.position.x += 3
         })
         /* Abajo */  
-    } else if (keys.s.pressed && lastKey === 's'){
+    } else if (keys.ArrowDown.pressed && lastKey === 'ArrowDown'){
         player.moving = true
         player.image = player.sprites.down
         for (let i = 0; i < boundaries.length; i++) {
@@ -500,7 +502,7 @@ function animate() {
             movable.position.y -= 3
         })
         /* Derecha */
-    } else if (keys.d.pressed && lastKey === 'd'){
+    }  else if (keys.ArrowRight.pressed && lastKey === 'ArrowRight') {
         player.moving = true
         player.image = player.sprites.right
         for (let i = 0; i < boundaries.length; i++) {
@@ -552,20 +554,32 @@ function animateTetris() {
 let lastKey = ''
 window.addEventListener('keydown', (e) => {
     switch(e.key) {
-        case 'w': keys.w.pressed = true; lastKey = 'w'; break;
-        case 'a': keys.a.pressed = true; lastKey = 'a'; break;
-        case 's': keys.s.pressed = true; lastKey = 's'; break;
-        case 'd': keys.d.pressed = true; lastKey = 'd'; break;
+        case 'ArrowUp': keys.ArrowUp.pressed = true;
+            lastKey = 'ArrowUp';
+            break;
+        case 'ArrowLeft': keys.ArrowLeft.pressed = true;
+            lastKey = 'ArrowLeft';
+            break;
+        case 'ArrowDown': keys.ArrowDown.pressed = true;
+            lastKey = 'ArrowDown';
+            break;
+        case 'ArrowRight': keys.ArrowRight.pressed = true;
+            lastKey = 'ArrowRight';
+            break;
     }
-})
+});
 
 window.addEventListener('keyup', (e) => {
     switch(e.key) {
-        case 'w': keys.w.pressed = false; break;
-        case 'a': keys.a.pressed = false; break;
-        case 's': keys.s.pressed = false; break;
-        case 'd': keys.d.pressed = false; break;
+        case 'ArrowUp': keys.ArrowUp.pressed = false;
+            break;
+        case 'ArrowLeft': keys.ArrowLeft.pressed = false;
+            break;
+        case 'ArrowDown': keys.ArrowDown.pressed = false;
+            break;
+        case 'ArrowRight': keys.ArrowRight.pressed = false;
+            break;
     }
-})
+});
 
 

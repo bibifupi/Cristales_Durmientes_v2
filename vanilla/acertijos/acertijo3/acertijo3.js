@@ -71,7 +71,7 @@ window.addEventListener("DOMContentLoaded", () => {
 
     if (conexiones === conexionesNecesarias.length) {
       window.alert("¡Felicidades, lo has conseguido!");
-      window.location.href = 'N:/2º DAW/Proyecto/Pokemon/Cristales_Durmientes/index.html';
+      window.location.href = '../../index.html';
       sessionStorage.setItem('puzzle3Completed', 'true');
       winner = true;
     }

@@ -13,9 +13,10 @@
             <h1 class="titulo">
                 Perfil
             </h1>
-            <h5>Introduce los datos para crear tu cuenta</h5>
-<label>Usuario</label>
-            <input type="text" name="Usuario" placeholder="Usuario" title="Usuario" required>
+            <label>Usuario</label>
+            <input type="text" name="Usuario" placeholder={{usuario?.username}} title="Usuario" required>
+            <label>Email</label>
+            <input type="text" name="Usuario" placeholder={{usuario?.email}} title="Usuario" required>
             <label>Nivel</label>
             <input type="text" name="Nivel" placeholder="Nivel" title="Nivel" required>
             <label>Tiempo</label>

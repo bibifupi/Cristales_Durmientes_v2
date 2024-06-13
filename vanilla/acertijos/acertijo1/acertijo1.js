@@ -42,7 +42,7 @@ function matchCartas(img1, img2) {
         if (matched == 8) {
             setTimeout(() => {
                 window.alert("¡Felicidades, lo has conseguido!");
-                window.location.href = 'N:/2º DAW/Proyecto/Pokemon/Cristales_Durmientes/index.html';
+                window.location.href = '../../index.html';
                 sessionStorage.setItem('puzzle1Completed', 'true');
 
             }, 1000);

@@ -61,7 +61,7 @@ $(document).ready(function() {
       }
       if (solved()){
         window.alert("Solucionado en " + movimientos + " movimientos!");
-        window.location.href = 'N:/2º DAW/Proyecto/Pokemon/Cristales_Durmientes/index.html';
+        window.location.href = '../../index.html';
         sessionStorage.setItem('puzzle2Completed', 'true');
 
       } 
