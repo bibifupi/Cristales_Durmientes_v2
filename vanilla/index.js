@@ -195,7 +195,9 @@ function checkPuzzle3Status() {
     return sessionStorage.getItem('puzzle3Completed') === 'true';
 }
 const tetris = { initiated: false }
-
+function checkTetriStatus() {
+    return sessionStorage.getItem('tetrisCompleted') === 'true';
+}
 
 function checkPuzzle3Status() {
     return sessionStorage.getItem('acertijo3Completo') === 'true';
