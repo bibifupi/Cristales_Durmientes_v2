@@ -1,4 +1,4 @@
-package cristales.demo.Auth;
+/* package cristales.demo.Auth;
 
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
@@ -29,3 +29,4 @@ public class AuthController {
         return ResponseEntity.ok(authService.register(request));
     }
 }
+ */

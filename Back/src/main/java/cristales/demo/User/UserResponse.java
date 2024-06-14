@@ -1,4 +1,4 @@
-package cristales.demo.User;
+/* package cristales.demo.User;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -12,3 +12,4 @@ import lombok.NoArgsConstructor;
 public class UserResponse {
     String message;
 }
+ */

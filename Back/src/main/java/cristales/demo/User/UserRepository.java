@@ -1,4 +1,4 @@
-package cristales.demo.User;
+/* package cristales.demo.User;
 
 import java.util.Optional;
 
@@ -17,3 +17,4 @@ public interface UserRepository extends JpaRepository<Usuario,Integer> {
     //void updateUser(@Param(value = "id") Integer id,   @Param(value = "firstname") String firstname, @Param(value = "lastname") String lastname , @Param(value = "country") String country);
 
 }
+ */

@@ -1,16 +1,15 @@
 const canvas = document.querySelector('canvas');
 const context = canvas.getContext('2d');
 
-canvas.width = 1024;
-canvas.height = 576;
+canvas.width = window.innerWidth;
+canvas.height = window.innerHeight; 
 
 /*  COLISIONES */
 /*  Colisiones elementos del Mapa */
 
 const boundaries = []
 const offset = {
-    //x: -900, y: -580
-    x: -570, y: -300
+    x: -730, y: -500
 
 }
 
@@ -155,8 +154,8 @@ playerRightImage.src = "./img/playerRight.png"
 
 const player = new Sprite({
     position: {
-        //x: canvas.width /3 - 192 /4 /2.5,  y: canvas.height /1.7 - 68 /2,
-        x: canvas.width / 3 - 192 / 4 / 2.5, y: canvas.height / 1.6 - 68 / 2,
+        x: canvas.width /3 - 192 /4 /2.5,  y: canvas.height /1.7 - 68 /2,
+        //x: canvas.width / 3 - 192 / 4 / 2.5, y: canvas.height / 1.6 - 68 / 2,
     },
     image: playerDownImage,
     frames: {
@@ -206,9 +205,6 @@ function checkTetriStatus() {
     return sessionStorage.getItem('tetrisCompleted') === 'true';
 }
 
-// function checkPuzzle3Status() {
-//     return sessionStorage.getItem('acertijo3Completo') === 'true';
-// }
 
 /*  ANIMACIONES */
 function animate() {
@@ -411,7 +407,7 @@ function animate() {
                 && overlappingAreaTetris > (player.width * player.height) / 2 && Math.random() < 0.01
             ) {
                 console.log('Tetris');
-                alert("Debes demostrar antes tu intelecto");
+                alert("Debes demostrar antes tu ingenio");
 
 
                 // Inicializar Tetris
@@ -560,7 +556,7 @@ function animatePuzzle3() {
 }
 function animateTetris() {
     window.requestAnimationFrame(animateTetris);
-    //window.location.href = 'ubicacion_tetris';
+    window.location.href = 'tetris/tetris.html';
 }
 
 /* TECLAS DE ACCIÓN-MOVIMIENTO */

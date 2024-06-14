@@ -1,4 +1,6 @@
-/* package cristales.demo.User;
+package cristales.demo.dto;
+
+import java.io.Serializable;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -9,11 +11,9 @@ import lombok.NoArgsConstructor;
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
-public class UserDTO {
-    int id;
-    String username;
-    String firstname;
-    String lastname;
-    String country;
+
+public class JefeDTO implements Serializable {
+
+    private boolean cristal;
+    
 }
- */

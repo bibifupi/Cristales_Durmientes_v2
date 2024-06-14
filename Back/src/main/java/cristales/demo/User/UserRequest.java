@@ -1,4 +1,4 @@
-package cristales.demo.User;
+/* package cristales.demo.User;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -16,3 +16,4 @@ public class UserRequest {
     String lastname;
     String country;
 }
+ */

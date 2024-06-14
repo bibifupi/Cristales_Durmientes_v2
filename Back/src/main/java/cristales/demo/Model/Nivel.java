@@ -1,34 +1,40 @@
 package cristales.demo.Model;
 
-
-
-import java.util.List;
-
+import jakarta.persistence.Column;
+import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.Id;
-import jakarta.persistence.JoinColumn;
-import jakarta.persistence.OneToMany;
-import jakarta.persistence.OneToOne;
+import jakarta.persistence.Table;
+import lombok.AllArgsConstructor;
+import lombok.Builder;
+import lombok.Data;
+import lombok.NoArgsConstructor;
 
+@Data
+@Builder
+@NoArgsConstructor
+@AllArgsConstructor
+//Esta clase User se puede escribir en BD
+@Entity
+//Tabla en la que se apunta
+@Table(name="Nivel")
 public class Nivel {
-    /*
+ 
     @Id
     @GeneratedValue
+    private int id;
+
+    @Column(nullable = false)
     private int idNivel;
 
-    //@OneToOne
-    //@JoinColumn
-    private Jefe jefe;
+    @Column(nullable = false)
+    private int idAcertijo;
 
-    //@OneToMany
-    //@JoinColumn
-    private List<Acertijo> idAcertijo;
+    @Column(nullable = false)
+    private int idJefe;
 
-    //@OneToOne
-    //@JoinColumn
-    private Usuario idUsuario;
+    @Column(nullable = false)
+    private int idUsuario;
 
-     */
-    /* tiene que tener el identificador usuario para pasarselo a acrtijo */
     
 }
