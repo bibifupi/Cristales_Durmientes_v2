@@ -6,15 +6,21 @@
     <div class="login">
         <img src="..\assets\joyitas-sin-fondo.png" class="joyitas" alt="Joyitas cabecera">
 
-        <form class="loginform">
+        <form class="loginform" [formGroup]="login" (ngSubmit)="onSubmit()">
             <h3 class="titulo">
                 ¡Bienvenid&#64;s!
             </h3>
             <h5>Introduce tu correo electrónico y contraseña para iniciar sesión.</h5>
-            <label><h6>Nombre de usuario</h6></label>
-            <input type="text" name="nombre" placeholder="Nombre de usuario" title="Nombre de usuario" required>
-            <label><h6>Contraseña</h6></label>
-            <input type="password" name="password" placeholder="Contraseña" title="Contraseña" required>
+
+            <label>
+                <h6>Nombre de usuario</h6>
+            </label>
+            <input type="text" name="nombre" placeholder="Nombre de usuario" title="Nombre de usuario" formControlName="username" required>
+
+            <label>
+                <h6>Contraseña</h6>
+            </label>
+            <input type="password" name="password" placeholder="Contraseña" title="Contraseña" formControlName="password" required>
 
             <button class="button iniciar-sesion" type="submit">Iniciar sesión</button>
         </form>
