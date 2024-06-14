@@ -1,4 +1,4 @@
-package cristales.demo.Config;
+/* package cristales.demo.Config;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -11,14 +11,14 @@ import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 
-import cristales.demo.User.UserRepository;
+import cristales.demo.Repository.UsuarioRepositorio;
 import lombok.RequiredArgsConstructor;
 
 @Configuration
 @RequiredArgsConstructor
 public class ApplicationConfig {
 
-    private final UserRepository userRepository;
+    private final UsuarioRepositorio usuarioRepositorio;
 
     @Bean
     public AuthenticationManager authenticationManager(AuthenticationConfiguration config) throws Exception {
@@ -40,8 +40,9 @@ public class ApplicationConfig {
 
     @Bean
     public UserDetailsService userDetailService() {
-        return username -> userRepository.findByUsername(username)
+        return username -> usuarioRepositorio.findByUsername(username)
         .orElseThrow(()-> new UsernameNotFoundException("User not fournd"));
     }
 
 }
+ */

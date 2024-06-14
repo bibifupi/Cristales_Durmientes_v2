@@ -1,4 +1,4 @@
-package cristales.demo.User;
+/* package cristales.demo.User;
 
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
@@ -37,3 +37,4 @@ public class UserController {
         return ResponseEntity.ok(userService.updateUser(userRequest));
     }
 }
+ */

@@ -14,11 +14,7 @@ import jakarta.persistence.EnumType;
 import jakarta.persistence.Enumerated;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.Id;
-import jakarta.persistence.JoinColumn;
-
-import jakarta.persistence.OneToOne;
 import jakarta.persistence.Table;
-
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -39,10 +35,10 @@ public class Usuario implements UserDetails {
     @GeneratedValue
     Integer idUsuario;
     
-    @Column(length = 10, nullable = false)
+    @Column(nullable = false)
     String username;
     
-    @Column(length = 10, nullable = false)
+    @Column(nullable = false)
     String password;
 
     @Column(length = 500, nullable = false)
@@ -51,15 +47,8 @@ public class Usuario implements UserDetails {
     @Enumerated(EnumType.STRING) 
     Role role;
 
-    //@OneToOne
-    //@JoinColumn
-    //private Nivel idNivel;
-
-    //@OneToOne
-    //@JoinColumn
-    //private Progreso progreso;
-
-    
+    @Column(nullable = false)
+    private int idNivel;
     
     /* FUNCIONES */
     @Override
