@@ -16,14 +16,14 @@ export class RegistroComponent implements OnInit {
 
   constructor(
     private fb: FormBuilder,
-    private authService: UsuarioService,
+    private usuarioService: UsuarioService,
     private router: Router
   ) {
     console.log("Construyendo")
     this.registro = this.fb.group({
       username: ['', Validators.required],
       password: ['', [Validators.required, Validators.minLength(6)]],
-      confirmarPassword: ['', Validators.required]
+      repeatPassword: ['', Validators.required]
     });
   }
 
@@ -33,7 +33,7 @@ export class RegistroComponent implements OnInit {
   }
 
   passwordCoincide(form: FormGroup) {
-    return form.get("password")?.value === form.get("confirmarPassword")?.value;
+    return form.get("password")?.value === form.get("repeatPassword")?.value;
   }
 
   onSubmit(): void {
@@ -43,14 +43,12 @@ export class RegistroComponent implements OnInit {
     if (!this.passwordCoincide(this.registro)) { return alert('Las contraseñas deben coincidir') }
 
 
-    this.authService.registro(this.registro.value).subscribe({
+    this.usuarioService.registro(this.registro.value).subscribe({
       next: () => this.router.navigate(['/login']),
       error: (err) => {
-        if (err.status === 409)
-          this.errorMessage = 'El usuario ya está en uso';
-        else
-          this.errorMessage = 'Error de servidor. Por favor, inténtalo de nuevo más tarde.';
-
+       console.log(err);
+       this.errorMessage = err.toString();
+  
         alert(this.errorMessage);
       }
     });

@@ -14,23 +14,30 @@ export class UsuarioService {
   constructor(private http: HttpClient) { }
 
   login(username: string, password: string): Observable<any> {
+    console.log('Inicio LOGIN: username', username, 'password', password);
     return this.http.post<any>(this.url + "/login", { username, password }).pipe(
       tap(response => {
-        if (response && response.token) {
-          localStorage.setItem('authToken', response.token);
-        }
+        console.log('Login response', response);
+      }),
+      catchError(error => {
+        console.log(error);
+        throw new Error(error.error);
       })
     );
   }
 
   registro(usuario: any): Observable<any> {
+    console.log('usuario', usuario);
+
     return this.http.post<any>(this.url + "/registro", usuario).pipe(
+      tap(response => {
+        console.log('Registro response', response);
+
+      }),
       catchError(error => {
-        if (error.status === 409) {
-          throw new Error("El usuario ya existe");
-        } else {
-          throw new Error('Error de servidor. Por favor, inténtalo de nuevo más tarde.');
-        }
+        console.log(error);
+        throw new Error(error.error);
+      
       })
     );
   }
@@ -67,7 +74,7 @@ export class UsuarioService {
     return this.http.get<Nivel>(`${this.url}/nivel/${id}`);
   }
 
-  getUsuarios(): Observable<Usuario[]>{
+  getUsuarios(): Observable<Usuario[]> {
     return this.http.get<Usuario[]>(`${this.url}/usuarios`);
   }
 

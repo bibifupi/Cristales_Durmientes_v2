@@ -3,6 +3,7 @@ package cristales.demo.Controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
@@ -23,7 +24,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 
 @RestController
 @RequestMapping(value = "/api/usuario") //solo gestiona peticiones a Usuario
-
+@CrossOrigin(origins = "http://localhost:4200")
 @Slf4j
 public class UsuarioController {
     //conexion con el servicio

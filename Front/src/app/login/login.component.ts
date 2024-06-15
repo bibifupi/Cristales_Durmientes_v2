@@ -16,7 +16,7 @@ export class LoginComponent {
 
   constructor(
     private fb: FormBuilder,
-    private authService: UsuarioService,
+    private usuarioService: UsuarioService,
     private router: Router
   ) {
     console.log("Construyendo")
@@ -32,16 +32,14 @@ export class LoginComponent {
 
     const { username, password } = this.login.value;
 
-    this.authService.login(username, password).subscribe({
+    this.usuarioService.login(username, password).subscribe({
       next: () => this.router.navigate(['/perfil']),
       error: (err) => {
-        if (err.status === 401) {
-          this.errorMessage = 'Username o contraseña incorrectos';
-        } else {
-          this.errorMessage = 'Error de servidor. Por favor, inténtalo de nuevo más tarde.';
-        }
-        alert(this.errorMessage);
-      }
+        console.log(err);
+        this.errorMessage = err.toString();
+   
+         alert(this.errorMessage);
+       }
     });
   }
 
