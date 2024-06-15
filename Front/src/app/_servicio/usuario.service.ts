@@ -3,6 +3,7 @@ import { Injectable } from '@angular/core';
 import { Observable, catchError, tap } from 'rxjs';
 import { Usuario } from '../_modelo/usuario';
 import { Nivel } from '../_modelo/nivel';
+import { UsuarioResponse } from '../_modelo/usuarioResponse';
 
 @Injectable({
   providedIn: 'root'
@@ -11,11 +12,27 @@ import { Nivel } from '../_modelo/nivel';
 export class UsuarioService {
   private url = 'http://localhost:8080/api/usuario';
 
+  //Gestionamos el perfil del usuario
+  private storageKey = 'userPerfil';
+
+  setPerfil(usuario: UsuarioResponse) {
+    sessionStorage.setItem(this.storageKey, JSON.stringify(usuario));
+  }
+
+  getPerfil(): UsuarioResponse {
+    const profile = sessionStorage.getItem(this.storageKey);
+    return profile ? JSON.parse(profile) : null;
+  }
+
+  clearPerfil() {
+    sessionStorage.removeItem(this.storageKey);
+  }
+
   constructor(private http: HttpClient) { }
 
-  login(username: string, password: string): Observable<any> {
+  login(username: string, password: string): Observable<UsuarioResponse> {
     console.log('Inicio LOGIN: username', username, 'password', password);
-    return this.http.post<any>(this.url + "/login", { username, password }).pipe(
+    return this.http.post<UsuarioResponse>(this.url + "/login", { username, password }).pipe(
       tap(response => {
         console.log('Login response', response);
       }),
@@ -26,10 +43,10 @@ export class UsuarioService {
     );
   }
 
-  registro(usuario: any): Observable<any> {
+  registro(usuario: any): Observable<UsuarioResponse> {
     console.log('usuario', usuario);
 
-    return this.http.post<any>(this.url + "/registro", usuario).pipe(
+    return this.http.post<UsuarioResponse>(this.url + "/registro", usuario).pipe(
       tap(response => {
         console.log('Registro response', response);
 
@@ -37,7 +54,36 @@ export class UsuarioService {
       catchError(error => {
         console.log(error);
         throw new Error(error.error);
-      
+
+      })
+    );
+  }
+
+  ranking(): Observable<UsuarioResponse[]> {
+    console.log('Inicio de llamada Ranking');
+
+    return this.http.get<UsuarioResponse[]>(this.url + "/ranking").pipe(
+      tap(response => {
+        console.log('Ranking response', response);
+
+      }),
+      catchError(error => {
+        console.log(error);
+        throw new Error(error.error);
+
+      })
+    );
+  }
+
+  updateUser(usuario:UsuarioResponse): Observable<UsuarioResponse> {
+    console.log('Inicio UPDATE', usuario);
+    return this.http.put<UsuarioResponse>(this.url + "/update", usuario).pipe(
+      tap(response => {
+        console.log('Update response', response);
+      }),
+      catchError(error => {
+        console.log(error);
+        throw new Error(error.error);
       })
     );
   }

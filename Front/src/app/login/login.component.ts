@@ -33,8 +33,9 @@ export class LoginComponent {
     const { username, password } = this.login.value;
 
     this.usuarioService.login(username, password).subscribe({
-      next: (res) => {
-        console.log(res);
+      next: (usuario) => {
+        console.log('Login succesful',usuario);
+        this.usuarioService.setPerfil(usuario);
         this.router.navigate(['/perfil'])
       },
       error: (err) => {

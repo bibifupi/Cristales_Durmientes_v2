@@ -46,12 +46,14 @@
 }
 
 .perfil img {
+    border: 2px solid black;
     border-radius: 50%;
     max-width: 300px;
     height: auto;
 }
 
 .imagen-perfil {
+    border: 2px solid white;
     border-radius: 50%;
     max-width: 100px;
     height: auto;
@@ -140,9 +142,6 @@ td {
 }
 
 .eliminar {
-    position: relative;
-    top: 80%;
-    left: 160%;
     font-weight: bold;
     background-color: #bf0039;
     color: white;

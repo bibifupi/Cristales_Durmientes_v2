@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { UsuarioResponse } from '../_modelo/usuarioResponse';
+import { UsuarioService } from '../_servicio/usuario.service';
 
 @Component({
   selector: 'app-perfil',
@@ -10,41 +11,38 @@ import { UsuarioResponse } from '../_modelo/usuarioResponse';
 })
 export class PerfilComponent {
 
-  usuario: UsuarioResponse = {
-    username: "bibi_guapa",
-    imagen: "https://avatars.githubusercontent.com/u/103118802?s=400&u=92bac3ca1e8d33cc3fa58ed50afe79f73cea9f5a&v=4",
-    nivelDTO: {
-      id: 0,
-      idNivel: 0,
-      acertijoDTOList: [
-        {
-          idAcertijo: 1,
-          superado: false
-        },
-        {
-          idAcertijo: 2,
-          superado: false
-        },
-        {
-          idAcertijo: 3,
-          superado: false
-        }
-      ],
-      jefeDTO: {
-        cristal: false
+  lista_Ranking: UsuarioResponse[] = [];
+
+  perfil!: UsuarioResponse;
+
+  constructor(private usuarioService: UsuarioService) {
+    this.perfil = this.usuarioService.getPerfil();
+    console.log('Consrtuctor perfil', this.perfil);
+
+    this.usuarioService.ranking().subscribe({
+      next: (data) => {
+        this.lista_Ranking = data;
+      },
+      error: (err) => {
+        console.log(err);
+        alert(err.toString());
       }
-    }
-  };
-
-  lista_Ranking: UsuarioResponse[] = [this.usuario, this.usuario, this.usuario, this.usuario, this.usuario];
-
-  constructor() {
-    // this.usuario = JSON.parse(localStorage.getItem('usuario') || '{}');
+    });
   }
 
-  jugar(){
-    window.location.href = '/vanilla/index.html';
+  jugar() {
+    // this.usuarioService.updateUser(this.usuario).subscribe({
+    //   next: (data) => {
+    //     console.log('Respuesta en perfil' ,data);
+    //   },
+    //   error: (err) => {
+    //     console.log(err);
+    //     alert(err.toString());
+    //   }
+    // });
+    // window.location.href = '/vanilla/index.html';
   }
 
 
-}
+ }
+

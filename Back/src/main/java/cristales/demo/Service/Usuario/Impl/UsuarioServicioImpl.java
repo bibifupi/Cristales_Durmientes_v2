@@ -158,7 +158,6 @@ public class UsuarioServicioImpl implements UsuarioServicio {
         if (usuario != null) {
 
             Jefe jefe = jefeServicio.findByIdUsuario(usuario.getIdUsuario());
-
             jefe.setCristal(usuarioRequestDTO.getNivelDTO().getJefeDTO().isCristal());
             jefe.setIdNivel(usuarioRequestDTO.getNivelDTO().getIdNivel());
             jefeServicio.save(jefe);
@@ -178,12 +177,12 @@ public class UsuarioServicioImpl implements UsuarioServicio {
                 Nivel nivel = nivelList.get(i);
                 nivel.setIdAcertijo(acertijoDTOlList.get(i).getIdAcertijo());
                 nivel.setIdJefe(jefe.getIdJefe());
-
+                nivel.setIdNivel(usuarioRequestDTO.getNivelDTO().getIdNivel());
                 nivelServicio.save(nivel);
             }
 
             usuario.setIdNivel(usuarioRequestDTO.getNivelDTO().getIdNivel());
-            // usuario.setImagen(usuarioRequestDTO.getImagen());
+            usuario.setImagen(usuarioRequestDTO.getImagen());
             usuarioRepositorio.save(usuario);
         }
 

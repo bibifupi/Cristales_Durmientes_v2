@@ -48,7 +48,7 @@ public class UsuarioController {
 
     @GetMapping
     public String Bienvenida () {
-        return "Hola mundo";
+        return "Bienvenido al Back de Cristales Durmientes, ¿nos aprobáis? :D ";
     }
 
 
@@ -77,11 +77,11 @@ public class UsuarioController {
         return usuarioResponse;
     }
 
-    @GetMapping("/perfil")
-    public UsuarioResponse perfilUSuario(){
-        UsuarioResponse user = null;
-        return user;
-    }
+    // @GetMapping("/perfil")
+    // public UsuarioResponse perfilUSuario(){
+    //     UsuarioResponse user = null;
+    //     return user;
+    // }
     
 
     @PutMapping("/update")

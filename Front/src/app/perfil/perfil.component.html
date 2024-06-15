@@ -2,13 +2,13 @@
 
     <div class=cristales>
         <h3>Cristales</h3>
-        @if(usuario.nivelDTO.idNivel==0){
+        @if(perfil.nivelDTO.idNivel==0){
         <img class="joyitas-conseguidas" src="..\assets\PERFILjoyitas-sin-fondo.png" alt="Joyitas Conseguidas">
-        } @else if(usuario.nivelDTO.idNivel==1){
+        } @else if(perfil.nivelDTO.idNivel==1){
         <img class="joyitas-conseguidas" src="..\assets\PERFILjoyitas1.png" alt="Joyitas Conseguidas">
-        } @else if(usuario.nivelDTO.idNivel==2){
+        } @else if(perfil.nivelDTO.idNivel==2){
         <img class="joyitas-conseguidas" src="..\assets\PERFILjoyitas2.png" alt="Joyitas Conseguidas">
-        } @else if(usuario.nivelDTO.idNivel==3){
+        } @else if(perfil.nivelDTO.idNivel==3){
         <img class="joyitas-conseguidas" src="..\assets\PERFILjoyitas3.png" alt="Joyitas Conseguidas">
         }
     </div>
@@ -17,9 +17,7 @@
         <h1 class="titulo">
             Perfil
         </h1>
-        <img class="imagen-perfil"
-            src="https://avatars.githubusercontent.com/u/103118802?s=400&u=92bac3ca1e8d33cc3fa58ed50afe79f73cea9f5a&v=4"
-            alt="Imagen de perfil">
+        <img class="imagen-perfil" [src]=perfil.imagen alt="Imagen de perfil">
         <div class="detalles">
 
             <table class="tabla-usuario">
@@ -28,7 +26,7 @@
                         <h6><b>Usuario</b></h6>
                     </td>
                     <td>
-                        <h6>{{usuario.username}}</h6>
+                        <h6>{{perfil.username}}</h6>
                     </td>
                 </tr>
                 <tr>
@@ -36,17 +34,15 @@
                         <h6><b>Nivel</b></h6>
                     </td>
                     <td>
-                        <h6>{{usuario.nivelDTO.idNivel}}</h6>
+                        <h6>{{perfil.nivelDTO.idNivel}}</h6>
                     </td>
                 </tr>
             </table>
-
-            <button class="eliminar" type="submit" id="eliminar">Eliminar perfil</button>
+            <button class="button play" (click)="jugar()">PLAY</button>
         </div>
         <br>
         <br>
-        <button class="button play" (click)="jugar()">PLAY</button>
-
+        <button class="eliminar" type="submit" id="eliminar">Eliminar perfil</button>
         <br>
         <br>
 
