@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import cristales.demo.Service.Usuario.UsuarioServicio;
+import cristales.demo.dto.RankingDTO;
 import cristales.demo.dto.UsuarioLoginDTO;
 import cristales.demo.dto.UsuarioRegistroDTO;
 import cristales.demo.dto.UsuarioRequestDTO;
@@ -76,7 +77,8 @@ public class UsuarioController {
 
     @GetMapping("/perfil")
     public UsuarioResponse perfilUSuario(){
-        
+        UsuarioResponse user = null;
+        return user;
     }
     
 

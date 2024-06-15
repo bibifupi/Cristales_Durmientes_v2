@@ -239,7 +239,7 @@ public class UsuarioServicioImpl implements UsuarioServicio {
         List <Acertijo> acertijoList = acertijoServicio.findByIdNivelAndIdUsuario(usuario.getIdNivel(), usuario.getIdUsuario());
 
         //Buscamos el Jefe del Jugador por idJefe
-        Jefe jefe = jefeServicio.findByIdNivel(usuario.getIdNivel());
+        Jefe jefe = jefeServicio.findByIdNivelAndIdUsuario(usuario.getIdNivel(), usuario.getIdUsuario());
 
         
         JefeDTO jefeDTO = JefeDTO.builder().cristal(jefe.isCristal()).build();

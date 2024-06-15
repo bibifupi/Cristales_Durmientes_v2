@@ -7,8 +7,9 @@ import { Nivel } from '../_modelo/nivel';
 @Injectable({
   providedIn: 'root'
 })
+
 export class UsuarioService {
-  private url = 'http://localhost:8080/api/v1/auth';
+  private url = 'http://localhost:8080/api/usuario';
 
   constructor(private http: HttpClient) { }
 

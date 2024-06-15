@@ -59,6 +59,22 @@ public class JefeServicioImpl implements JefeServicio{
 
         return jefe;
     }
+
+    @Override
+    public Jefe findByIdNivelAndIdUsuario(int idNivel, int idUsuario) {
+        
+        Jefe jefe = null;
+
+        Optional <Jefe> jefeOptional = jefeRepositorio.findByIdNivelAndIdUsuario(idNivel, idUsuario);
+
+        //isPresent es si existe
+        if(jefeOptional.isPresent()){
+            jefe = jefeOptional.get();
+        }
+
+        return jefe;
+
+    }
     
 
     @Override
