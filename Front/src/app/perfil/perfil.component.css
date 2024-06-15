@@ -46,21 +46,24 @@
 }
 
 .perfil img {
+    border-radius: 50%;
     max-width: 300px;
     height: auto;
 }
 
-.imagen-perfil{
+.imagen-perfil {
+    border-radius: 50%;
     max-width: 100px;
     height: auto;
 }
 
-.perfilform {
+.detalles {
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
 }
+
 
 .titulo {
     padding: 1vw;
@@ -112,6 +115,8 @@
     align-items: center;
     justify-content: center;
     grid-column: 6/8;
+    color: white;
+    text-shadow: 1px 1px 5px black;
 }
 
 .ranking h1 {
@@ -123,13 +128,27 @@
     font-size: 3vw;
     line-height: 1;
 }
-.joyitas-conseguidas{
+
+.joyitas-conseguidas {
     max-width: 100px;
     height: auto;
 }
-td{
+
+td {
     text-align: center;
+    padding: 10px;
 }
+
+.eliminar {
+    position: relative;
+    top: 80%;
+    left: 160%;
+    font-weight: bold;
+    background-color: #bf0039;
+    color: white;
+    cursor: pointer;
+}
+
 /* .tabla-usuario{
     text-align: center;
 } */

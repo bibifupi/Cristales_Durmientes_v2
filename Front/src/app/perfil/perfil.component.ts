@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { UsuarioResponse } from '../_modelo/usuarioReponse';
+import { UsuarioResponse } from '../_modelo/usuarioResponse';
 
 @Component({
   selector: 'app-perfil',
@@ -36,10 +36,14 @@ export class PerfilComponent {
     }
   };
 
-  lista_Ranking: UsuarioResponse[] = [this.usuario, this.usuario, this.usuario,];
+  lista_Ranking: UsuarioResponse[] = [this.usuario, this.usuario, this.usuario, this.usuario, this.usuario];
 
   constructor() {
     // this.usuario = JSON.parse(localStorage.getItem('usuario') || '{}');
+  }
+
+  jugar(){
+    window.location.href = '/vanilla/index.html';
   }
 
 

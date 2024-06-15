@@ -29,8 +29,11 @@ import lombok.extern.slf4j.Slf4j;
 @Service
 public class UsuarioServicioImpl implements UsuarioServicio {
 
-    /*Cuando el objeto no existe para spring (UsuarioRepositorio) 
-    usamos Autowired para que automaticamente se vincule ese objeto conmigo (UsuarioServicioImpl)*/
+    /*
+     * Cuando el objeto no existe para spring (UsuarioRepositorio)
+     * usamos Autowired para que automaticamente se vincule ese objeto conmigo
+     * (UsuarioServicioImpl)
+     */
     @Autowired
     private UsuarioRepositorio usuarioRepositorio;
 
@@ -43,13 +46,12 @@ public class UsuarioServicioImpl implements UsuarioServicio {
     @Autowired
     private JefeServicio jefeServicio;
 
-
     @Override
-    public UsuarioResponse loginUsuario(UsuarioLoginDTO usuarioLoginDTO){
+    public UsuarioResponse loginUsuario(UsuarioLoginDTO usuarioLoginDTO) {
 
         UsuarioResponse usuarioResponse = null;
         Usuario usuario = findByUsernameAndPassword(usuarioLoginDTO.getUsername(), usuarioLoginDTO.getPassword());
-        
+
         if (usuario != null) {
             log.info("Encontrado");
             usuarioResponse = getUsuarioJuego(usuario);
@@ -62,21 +64,21 @@ public class UsuarioServicioImpl implements UsuarioServicio {
 
     @Override
     public UsuarioResponse registroUsuario(UsuarioRegistroDTO usuarioRegistroDTO) {
-    log.info("Las contraseñas son diferentes");
+        log.info("Las contraseñas son diferentes");
         UsuarioResponse usuarioResponse = null;
 
         if (usuarioRegistroDTO.getPassword().equalsIgnoreCase(usuarioRegistroDTO.getRepeatPassword())) {
 
-            if ( findByUsername(usuarioRegistroDTO.getUsername()) == null ){ 
-                
-                Usuario usuario = Usuario.builder()
-                    .username(usuarioRegistroDTO.getUsername())
-                    .password(usuarioRegistroDTO.getPassword())
-                    .idNivel(0)
-                    .imagen("https://robohash.org/" + usuarioRegistroDTO.getUsername() + "?set=set1")
-                    .build();
+            if (findByUsername(usuarioRegistroDTO.getUsername()) == null) {
 
-                //Genera la entrada a la BD y el idUsuario
+                Usuario usuario = Usuario.builder()
+                        .username(usuarioRegistroDTO.getUsername())
+                        .password(usuarioRegistroDTO.getPassword())
+                        .idNivel(0)
+                        .imagen("https://robohash.org/" + usuarioRegistroDTO.getUsername() + "?set=set1")
+                        .build();
+
+                // Genera la entrada a la BD y el idUsuario
                 usuarioRepositorio.save(usuario);
 
                 log.info("USUARIO: {}", usuario);
@@ -86,61 +88,60 @@ public class UsuarioServicioImpl implements UsuarioServicio {
                 if (usuario != null) {
 
                     Jefe jefe = Jefe.builder()
-                        .idJefe(0)
-                        .cristal(false)
-                        .idNivel(0)
-                        .idUsuario(usuario.getIdUsuario())
-                        .build();
-                        jefeServicio.save(jefe);
-
-                    JefeDTO jefeDTO = JefeDTO.builder().cristal(jefe.isCristal()).build();
-
-                    List <Acertijo> acertijoList = new ArrayList<>();
-                    List<AcertijoDTO> acertijoDTOList = new ArrayList<>();
-                    //for porque se guarda más de un acertijo
-                    for (int i=1; i<=3; i++){
-
-                        Acertijo acertijo = Acertijo.builder()
-                            .idAcertijo(i)
-                            .superado(false)
+                            .idJefe(0)
+                            .cristal(false)
                             .idNivel(0)
                             .idUsuario(usuario.getIdUsuario())
                             .build();
-                        
-                        //Guarda el acertijo
+                    jefeServicio.save(jefe);
+
+                    JefeDTO jefeDTO = JefeDTO.builder().cristal(jefe.isCristal()).build();
+
+                    List<Acertijo> acertijoList = new ArrayList<>();
+                    List<AcertijoDTO> acertijoDTOList = new ArrayList<>();
+                    // for porque se guarda más de un acertijo
+                    for (int i = 1; i <= 3; i++) {
+
+                        Acertijo acertijo = Acertijo.builder()
+                                .idAcertijo(i)
+                                .superado(false)
+                                .idNivel(0)
+                                .idUsuario(usuario.getIdUsuario())
+                                .build();
+
+                        // Guarda el acertijo
                         acertijoList.add(acertijoServicio.saveAcertijo(acertijo));
 
                         AcertijoDTO acertijoDTO = AcertijoDTO.builder()
-                            .idAcertijo(acertijo.getIdAcertijo())
-                            .superado(acertijo.isSuperado())
-                            .build();
+                                .idAcertijo(acertijo.getIdAcertijo())
+                                .superado(acertijo.isSuperado())
+                                .build();
 
                         acertijoDTOList.add(acertijoDTO);
 
                         Nivel nivel = Nivel.builder()
-                            .idNivel(0)
-                            .idAcertijo(i)
-                            .idJefe(0)
-                            .idUsuario(usuario.getIdUsuario())
-                            .build();
+                                .idNivel(0)
+                                .idAcertijo(i)
+                                .idJefe(0)
+                                .idUsuario(usuario.getIdUsuario())
+                                .build();
                         nivelServicio.save(nivel);
-                
+
                     }
 
                     NivelDTO nivelDTO = NivelDTO.builder()
-                    .idNivel(0)
-                    .acertijoDTOList(acertijoDTOList)
-                    .jefeDTO(jefeDTO)
-                    .build();
-
+                            .idNivel(0)
+                            .acertijoDTOList(acertijoDTOList)
+                            .jefeDTO(jefeDTO)
+                            .build();
 
                     usuarioResponse = UsuarioResponse.builder()
-                        .username(usuarioRegistroDTO.getUsername())
-                        .nivelDTO(nivelDTO)
-                        .imagen("")
-                        .build();
+                            .username(usuarioRegistroDTO.getUsername())
+                            .nivelDTO(nivelDTO)
+                            .imagen("")
+                            .build();
                 }
-                
+
             } else {
                 throw new RuntimeException("El usuario: " + usuarioRegistroDTO.getUsername() + " ya existe.");
             }
@@ -162,19 +163,18 @@ public class UsuarioServicioImpl implements UsuarioServicio {
             jefe.setIdNivel(usuarioRequestDTO.getNivelDTO().getIdNivel());
             jefeServicio.save(jefe);
 
+            List<Acertijo> acertijoList = acertijoServicio.findByIdUsuario(usuario.getIdUsuario());
+            List<AcertijoDTO> acertijoDTOlList = usuarioRequestDTO.getNivelDTO().getAcertijoDTOList();
+            List<Nivel> nivelList = nivelServicio.findByIdUsuario(usuario.getIdUsuario());
 
-            List <Acertijo> acertijoList = acertijoServicio.findByIdUsuario(usuario.getIdUsuario());
-            List <AcertijoDTO> acertijoDTOlList = usuarioRequestDTO.getNivelDTO().getAcertijoDTOList();
-            List <Nivel> nivelList = nivelServicio.findByIdUsuario(usuario.getIdUsuario());
-
-            for (int i=0; i<3; i++){
+            for (int i = 0; i < 3; i++) {
 
                 Acertijo acertijo = acertijoList.get(i);
                 acertijo.setIdAcertijo(acertijoDTOlList.get(i).getIdAcertijo());
                 acertijo.setSuperado(acertijoDTOlList.get(i).isSuperado());
                 acertijo.setIdNivel(usuarioRequestDTO.getNivelDTO().getIdNivel());
                 acertijoServicio.saveAcertijo(acertijo);
-     
+
                 Nivel nivel = nivelList.get(i);
                 nivel.setIdAcertijo(acertijoDTOlList.get(i).getIdAcertijo());
                 nivel.setIdJefe(jefe.getIdJefe());
@@ -183,21 +183,32 @@ public class UsuarioServicioImpl implements UsuarioServicio {
             }
 
             usuario.setIdNivel(usuarioRequestDTO.getNivelDTO().getIdNivel());
-            //usuario.setImagen(usuarioRequestDTO.getImagen());
+            // usuario.setImagen(usuarioRequestDTO.getImagen());
             usuarioRepositorio.save(usuario);
         }
 
     }
 
+    @Override
+    public List<UsuarioResponse> findTop5ByOrderByIdNivelDesc() {
+        List<UsuarioResponse> list_ranking = new ArrayList<>();
+        List<Usuario> list_usuarios = usuarioRepositorio.findTop5ByOrderByIdNivelDesc();
 
-    //Metdos que van a implementar de la interfaz UsuarioServicio
-    private Usuario findByUsername (String username) {
-    
+        for (int i = 0; i < 5; i++) {
+            list_ranking.add(getUsuarioJuego(list_usuarios.get(i)));
+        }
+
+        return list_ranking;
+    }
+
+    // Metdos que van a implementar de la interfaz UsuarioServicio
+    private Usuario findByUsername(String username) {
+
         Usuario usuario = null;
-        Optional <Usuario> usuarioOptional = usuarioRepositorio.findByUsername(username);
+        Optional<Usuario> usuarioOptional = usuarioRepositorio.findByUsername(username);
 
-        //isPresent es si existe
-        if(usuarioOptional.isPresent()){
+        // isPresent es si existe
+        if (usuarioOptional.isPresent()) {
             usuario = usuarioOptional.get();
         }
 
@@ -208,13 +219,13 @@ public class UsuarioServicioImpl implements UsuarioServicio {
 
         Usuario usuario = null;
         log.info("El usuario es: " + usuario);
-        
-        Optional <Usuario> usuarioOptional = usuarioRepositorio.findByUsernameAndPassword(username, password);
+
+        Optional<Usuario> usuarioOptional = usuarioRepositorio.findByUsernameAndPassword(username, password);
         log.info("El repositorio es: " + usuarioRepositorio);
         log.info(" usuario " + username + " pass " + password);
         log.info("El Optional es: " + usuarioOptional);
-        
-        if(usuarioOptional.isPresent()){
+
+        if (usuarioOptional.isPresent()) {
             log.info("Usuario Optional SI");
             usuario = usuarioOptional.get();
         } else {
@@ -225,45 +236,44 @@ public class UsuarioServicioImpl implements UsuarioServicio {
         return usuario;
     }
 
-    //Recupera los acertijos que tiene el jugador
+    // Recupera los acertijos que tiene el jugador
     private UsuarioResponse getUsuarioJuego(Usuario usuario) {
 
-        
-        //Buscamos el Jugador por username
-        //Usuario usuario = findByUsername(username);
+        // Buscamos el Jugador por username
+        // Usuario usuario = findByUsername(username);
 
-        //Buscamos el Nivel del jugador por idNivel e idUsuario
+        // Buscamos el Nivel del jugador por idNivel e idUsuario
         List<Nivel> nivel = nivelServicio.findByIdNivelAndIdUsuario(usuario.getIdNivel(), usuario.getIdUsuario());
-        
-        //Buscamos los Acertijos que ha hecho el Jugador por idNivel y idUsuario
-        List <Acertijo> acertijoList = acertijoServicio.findByIdNivelAndIdUsuario(usuario.getIdNivel(), usuario.getIdUsuario());
 
-        //Buscamos el Jefe del Jugador por idJefe
+        // Buscamos los Acertijos que ha hecho el Jugador por idNivel y idUsuario
+        List<Acertijo> acertijoList = acertijoServicio.findByIdNivelAndIdUsuario(usuario.getIdNivel(),
+                usuario.getIdUsuario());
+
+        // Buscamos el Jefe del Jugador por idJefe
         Jefe jefe = jefeServicio.findByIdNivelAndIdUsuario(usuario.getIdNivel(), usuario.getIdUsuario());
 
-        
         JefeDTO jefeDTO = JefeDTO.builder().cristal(jefe.isCristal()).build();
 
-        List <AcertijoDTO> acertijoDTOList = new ArrayList<>();
-        for (Acertijo acertijo : acertijoList ) {
+        List<AcertijoDTO> acertijoDTOList = new ArrayList<>();
+        for (Acertijo acertijo : acertijoList) {
 
             acertijoDTOList.add(AcertijoDTO.builder()
-                .idAcertijo(acertijo.getIdAcertijo())
-                .superado(acertijo.isSuperado())
-                .build());
+                    .idAcertijo(acertijo.getIdAcertijo())
+                    .superado(acertijo.isSuperado())
+                    .build());
         }
 
         NivelDTO nivelDTO = NivelDTO.builder()
-            .idNivel(nivel.get(0).getIdNivel())
-            .acertijoDTOList(acertijoDTOList)
-            .jefeDTO(jefeDTO)
-            .build();
-        
+                .idNivel(nivel.get(0).getIdNivel())
+                .acertijoDTOList(acertijoDTOList)
+                .jefeDTO(jefeDTO)
+                .build();
+
         UsuarioResponse usuarioResponse = UsuarioResponse.builder()
-            .username(usuario.getUsername())
-            .imagen(usuario.getImagen())
-            .nivelDTO(nivelDTO)
-            .build();
+                .username(usuario.getUsername())
+                .imagen(usuario.getImagen())
+                .nivelDTO(nivelDTO)
+                .build();
 
         return usuarioResponse;
 

@@ -1,6 +1,8 @@
 package cristales.demo.Controller;
 /* Aquí estan las llamadas de peticiones del Frontend al Backend */
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
@@ -10,7 +12,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import cristales.demo.Service.Usuario.UsuarioServicio;
-import cristales.demo.dto.RankingDTO;
 import cristales.demo.dto.UsuarioLoginDTO;
 import cristales.demo.dto.UsuarioRegistroDTO;
 import cristales.demo.dto.UsuarioRequestDTO;
@@ -92,8 +93,8 @@ public class UsuarioController {
 
 
     @GetMapping("/ranking")
-    public UsuarioResponse rankingUsuarios(RankingDTO RankingDTO){
-        return null;
+    public List<UsuarioResponse> rankingUsuarios(){
+        return usuarioServicio.findTop5ByOrderByIdNivelDesc();
     }
     
 }

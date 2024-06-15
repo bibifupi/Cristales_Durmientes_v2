@@ -1,5 +1,6 @@
 package cristales.demo.Repository;
 
+import java.util.List;
 import java.util.Optional;
 
 import org.springframework.data.jpa.repository.JpaRepository;
@@ -13,4 +14,7 @@ public interface UsuarioRepositorio extends  JpaRepository <Usuario, Integer> {
     Optional <Usuario> findByUsername(String username);
 
     Optional<Usuario> findByUsernameAndPassword(String username, String password);
+
+    //Ranking para el perfil de los 5 primeros
+    List<Usuario> findTop5ByOrderByIdNivelDesc();
 }
