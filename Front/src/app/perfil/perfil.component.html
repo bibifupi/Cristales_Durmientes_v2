@@ -2,26 +2,36 @@
 
     <div class=cristales>
         <h3>Cristales</h3>
-
-        <img class="joyitas-conseguidas" src="" alt="Joyitas Conseguidas">
+        <img class="joyitas-conseguidas" src="..\assets\PERFILjoyitas-sin-fondo.png" alt="Joyitas Conseguidas">
     </div>
 
     <div class="perfil">
 
-        <img class="imagen-perfil" src="" alt="Imagen de perfil">
+        <img class="imagen-perfil" src="https://avatars.githubusercontent.com/u/103118802?s=400&u=92bac3ca1e8d33cc3fa58ed50afe79f73cea9f5a&v=4" alt="Imagen de perfil">
         <form class="perfilform">
             <h1 class="titulo">
                 Perfil
             </h1>
-            <h5>Introduce los datos para crear tu cuenta</h5>
-            <label><h6>Usuario</h6></label>
-            <input type="text" name="Usuario" placeholder="Usuario" title="Usuario" required>
-            <label><h6>Nivel</h6></label>
-            <input type="text" name="Nivel" placeholder="Nivel" title="Nivel" required>
-            <label><h6>Tiempo</h6></label>
-            <input type="text" name="Tiempo" placeholder="Tiempo" title="Tiempo" required>
-            <label><h6>Ranking</h6></label>
-            <input type="text" name="Ranking" placeholder="Ranking" title="Ranking" required>
+            <table class="tabla-usuario">
+                <tr>
+                    <td>
+                        <h6><b>Usuario</b></h6>
+                    </td>
+                    <td><h6>{{usuario.username}}</h6></td>
+                </tr>
+                <tr>
+                    <td>
+                        <h6><b>Nivel</b></h6>
+                    </td>
+                    <td><h6>{{usuario.nivelDTO.idNivel}}</h6></td>
+                </tr>
+                <tr>
+                    <td>
+                        <h6><b>Ranking</b></h6>
+                    </td>
+                    <td></td>
+                </tr>
+            </table>
 
             <button class="button" type="submit" id="registro">Eliminar perfil</button>
         </form>
@@ -36,8 +46,18 @@
 
     <div class="ranking">
         <h1>Ranking</h1>
+        <table>
+            @for (user of lista_Ranking; track user){
+            <tr>
+                <td><img class="imagen-perfil" [src]=user.imagen alt="Imagen de perfil"></td>
+                <td>
+                    <h5>Nivel {{user.nivelDTO.idNivel}}</h5>
+                    <h5>{{user.username}}</h5>
+                </td>
 
-        <img class="mejores-jugadores" src="" alt="Mejores jugadores">
+            </tr>
+            }
+        </table>
     </div>
 
 </div>

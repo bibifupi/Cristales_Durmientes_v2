@@ -73,7 +73,7 @@ public class UsuarioServicioImpl implements UsuarioServicio {
                     .username(usuarioRegistroDTO.getUsername())
                     .password(usuarioRegistroDTO.getPassword())
                     .idNivel(0)
-                    .imagen("")
+                    .imagen("https://robohash.org/" + usuarioRegistroDTO.getUsername() + "?set=set1")
                     .build();
 
                 //Genera la entrada a la BD y el idUsuario

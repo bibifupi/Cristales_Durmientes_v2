@@ -46,7 +46,13 @@
 }
 
 .perfil img {
-    max-width: 100%;
+    max-width: 300px;
+    height: auto;
+}
+
+.imagen-perfil{
+    max-width: 100px;
+    height: auto;
 }
 
 .perfilform {
@@ -117,7 +123,16 @@
     font-size: 3vw;
     line-height: 1;
 }
-
+.joyitas-conseguidas{
+    max-width: 100px;
+    height: auto;
+}
+td{
+    text-align: center;
+}
+/* .tabla-usuario{
+    text-align: center;
+} */
 /* 
 @media screen and (max-width:400px){
     .contenedor{

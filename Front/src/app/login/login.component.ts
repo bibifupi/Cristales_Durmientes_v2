@@ -33,13 +33,15 @@ export class LoginComponent {
     const { username, password } = this.login.value;
 
     this.usuarioService.login(username, password).subscribe({
-      next: () => this.router.navigate(['/perfil']),
+      next: (res) => {
+        console.log(res);
+        this.router.navigate(['/perfil'])
+      },
       error: (err) => {
         console.log(err);
         this.errorMessage = err.toString();
-   
-         alert(this.errorMessage);
-       }
+        alert(this.errorMessage);
+      }
     });
   }
 
