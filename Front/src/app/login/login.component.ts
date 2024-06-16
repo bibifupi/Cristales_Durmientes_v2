@@ -34,13 +34,14 @@ export class LoginComponent {
 
     this.usuarioService.login(username, password).subscribe({
       next: (usuario) => {
-        console.log('Login succesful',usuario);
+        console.log('Login succesful', usuario);
         this.usuarioService.setPerfil(usuario);
         this.router.navigate(['/perfil'])
       },
       error: (err) => {
-        console.log(err);
-        this.errorMessage = err.toString();
+        console.log({ err });
+        console.log('err.error.message', err.message);
+        this.errorMessage = err.message.toString();
         alert(this.errorMessage);
       }
     });

@@ -37,8 +37,8 @@ export class UsuarioService {
         console.log('Login response', response);
       }),
       catchError(error => {
-        console.log(error);
-        throw new Error(error.error);
+        console.log('Login error',error);
+        throw new Error(error.error.message);
       })
     );
   }
@@ -75,7 +75,7 @@ export class UsuarioService {
     );
   }
 
-  updateUser(usuario:UsuarioResponse): Observable<UsuarioResponse> {
+  updateUser(usuario: UsuarioResponse): Observable<UsuarioResponse> {
     console.log('Inicio UPDATE', usuario);
     return this.http.put<UsuarioResponse>(this.url + "/update", usuario).pipe(
       tap(response => {
@@ -88,10 +88,8 @@ export class UsuarioService {
     );
   }
 
-  eliminarUsuario(): Observable<void> {
-    const token = localStorage.getItem('authToken');
-    const headers = new HttpHeaders().set('Authorization', `Bearer ${token}`);
-    return this.http.delete<void>(`${this.url + "/usuarios/eliminar"}`, { headers });
+  eliminarUsuario(username: string): Observable<any> {
+    return this.http.delete(`${this.url}/borrar/${username}`)
   }
 
   getUsuarioAutenticado(): Observable<Usuario> {

@@ -8,6 +8,7 @@ import org.springframework.stereotype.Service;
 import cristales.demo.Model.Jefe;
 import cristales.demo.Repository.JefeRepositorio;
 import cristales.demo.Service.Jefe.JefeServicio;
+import jakarta.transaction.Transactional;
 
 @Service
 public class JefeServicioImpl implements JefeServicio{
@@ -77,6 +78,14 @@ public class JefeServicioImpl implements JefeServicio{
     public Jefe save(Jefe jefe) {
                 
         return jefeRepositorio.save(jefe);
+
+    }
+
+    @Transactional
+    @Override
+    public void deleteByIdUsuario(int idUSuario) {
+
+        jefeRepositorio.deleteByIdUsuario(idUSuario);
 
     }
    

@@ -10,5 +10,5 @@ public interface NivelServicio {
     List<Nivel> findByIdNivelAndIdUsuario (int idNivel, int idUsuario);
 
     Nivel save (Nivel nivel);
-
+    void deleteByIdUsuario(int idUsuario);
 }

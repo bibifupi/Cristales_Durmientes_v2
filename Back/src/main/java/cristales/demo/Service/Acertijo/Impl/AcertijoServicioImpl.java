@@ -8,6 +8,7 @@ import org.springframework.stereotype.Service;
 import cristales.demo.Model.Acertijo;
 import cristales.demo.Repository.AcertijoRepositorio;
 import cristales.demo.Service.Acertijo.AcertijoServicio;
+import jakarta.transaction.Transactional;
 
 @Service
 public class AcertijoServicioImpl implements AcertijoServicio{
@@ -33,6 +34,14 @@ public class AcertijoServicioImpl implements AcertijoServicio{
     @Override
     public Acertijo saveAcertijo(Acertijo acertijo) {
         return acertijoRepositorio.save(acertijo);
+    }
+
+    @Transactional
+    @Override
+    public void deleteByIdUsuario(int idUSuario) {
+
+        acertijoRepositorio.deleteByIdUsuario(idUSuario);
+
     }
     
 }

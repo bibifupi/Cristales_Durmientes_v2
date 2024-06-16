@@ -12,5 +12,5 @@ public interface JefeRepositorio extends JpaRepository <Jefe, Integer> {
     Optional <Jefe> findByIdNivel (int idNivel);
     Optional <Jefe> findByIdUsuario (int idUSuario);
     Optional <Jefe> findByIdNivelAndIdUsuario (int idNivel, int idUSuario);
-    
+    void deleteByIdUsuario(int idUsuario);
 }

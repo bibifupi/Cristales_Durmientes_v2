@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { UsuarioResponse } from '../_modelo/usuarioResponse';
 import { UsuarioService } from '../_servicio/usuario.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-perfil',
@@ -15,7 +16,7 @@ export class PerfilComponent {
 
   perfil!: UsuarioResponse;
 
-  constructor(private usuarioService: UsuarioService) {
+  constructor(private usuarioService: UsuarioService, private router: Router) {
     this.perfil = this.usuarioService.getPerfil();
     console.log('Consrtuctor perfil', this.perfil);
 
@@ -43,6 +44,19 @@ export class PerfilComponent {
     // window.location.href = '/vanilla/index.html';
   }
 
+  eliminar(username: string) {
+    this.usuarioService.eliminarUsuario(username).subscribe({
+      next: response => {
+        console.log('Usuario eliminado con éxito', response);
+        this.router.navigate(['']); 
+      },
+      error: (err) => {
+        console.log(err);
+        alert(err.toString());
+      }
+    });
+  }
 
- }
+
+}
 

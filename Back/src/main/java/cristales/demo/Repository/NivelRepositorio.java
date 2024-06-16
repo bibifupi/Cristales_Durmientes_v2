@@ -10,5 +10,5 @@ public interface NivelRepositorio extends JpaRepository <Nivel, Integer> {
 
     List <Nivel> findByIdUsuario (int idUsuario);
     List <Nivel> findByIdNivelAndIdUsuario (int idNivel, int idUsuario);
-    
+    void deleteByIdUsuario(int idUsuario);
 }

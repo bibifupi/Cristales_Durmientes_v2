@@ -57,7 +57,7 @@ public class UsuarioServicioImpl implements UsuarioServicio {
 
     @Override
     public UsuarioResponse registroUsuario(UsuarioRegistroDTO usuarioRegistroDTO) {
-        
+
         UsuarioResponse usuarioResponse = null;
 
         if (usuarioRegistroDTO.getPassword().equalsIgnoreCase(usuarioRegistroDTO.getRepeatPassword())) {
@@ -71,7 +71,6 @@ public class UsuarioServicioImpl implements UsuarioServicio {
                         .imagen("https://robohash.org/" + usuarioRegistroDTO.getUsername() + "?set=set1")
                         .build();
 
-                
                 usuarioRepositorio.save(usuario);
 
                 usuario = findByUsername(usuarioRegistroDTO.getUsername());
@@ -90,7 +89,7 @@ public class UsuarioServicioImpl implements UsuarioServicio {
 
                     List<Acertijo> acertijoList = new ArrayList<>();
                     List<AcertijoDTO> acertijoDTOList = new ArrayList<>();
-                   
+
                     for (int i = 1; i <= 3; i++) {
 
                         Acertijo acertijo = Acertijo.builder()
@@ -100,7 +99,6 @@ public class UsuarioServicioImpl implements UsuarioServicio {
                                 .idUsuario(usuario.getIdUsuario())
                                 .build();
 
-                        
                         acertijoList.add(acertijoServicio.saveAcertijo(acertijo));
 
                         AcertijoDTO acertijoDTO = AcertijoDTO.builder()
@@ -257,8 +255,17 @@ public class UsuarioServicioImpl implements UsuarioServicio {
     @Transactional
     @Override
     public void borrarUsuario(String username) {
+        Usuario usuarioBorrar = null;
 
-        usuarioRepositorio.deleteByUsername(username);
+        Optional<Usuario> usuarioOptional = usuarioRepositorio.findByUsername(username);
 
+        if (usuarioOptional.isPresent()) {
+            usuarioBorrar = usuarioOptional.get();
+            
+            usuarioRepositorio.deleteByUsername(username);
+            nivelServicio.deleteByIdUsuario(usuarioBorrar.getIdUsuario());
+            acertijoServicio.deleteByIdUsuario(usuarioBorrar.getIdUsuario());
+            jefeServicio.deleteByIdUsuario(usuarioBorrar.getIdUsuario());
+        }
     }
 }

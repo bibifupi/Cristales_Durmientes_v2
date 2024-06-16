@@ -12,5 +12,5 @@ public interface AcertijoServicio {
     
     Acertijo saveAcertijo(Acertijo acertijo);
 
-    
+    void deleteByIdUsuario(int idUsuario);
 }

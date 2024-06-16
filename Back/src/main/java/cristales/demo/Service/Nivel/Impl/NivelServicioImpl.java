@@ -8,6 +8,7 @@ import org.springframework.stereotype.Service;
 import cristales.demo.Model.Nivel;
 import cristales.demo.Repository.NivelRepositorio;
 import cristales.demo.Service.Nivel.NivelServicio;
+import jakarta.transaction.Transactional;
 
 @Service
 public class NivelServicioImpl implements NivelServicio {
@@ -39,6 +40,14 @@ public class NivelServicioImpl implements NivelServicio {
     public Nivel save(Nivel nivel) {
         
         return nivelRepositorio.save(nivel);
+
+    }
+
+    @Transactional
+    @Override
+    public void deleteByIdUsuario(int idUSuario) {
+
+        nivelRepositorio.deleteByIdUsuario(idUSuario);
 
     }
     

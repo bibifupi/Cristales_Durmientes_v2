@@ -10,4 +10,6 @@ public interface JefeServicio {
     Jefe findByIdNivelAndIdUsuario (int idNivel, int idUSuario);
     
     Jefe save (Jefe jefe);
+
+    void deleteByIdUsuario(int idUsuario);
 }
