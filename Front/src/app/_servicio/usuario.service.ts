@@ -26,6 +26,7 @@ export class UsuarioService {
 
   clearPerfil() {
     sessionStorage.removeItem(this.storageKey);
+    [1, 2, 3].forEach((puzzle) => sessionStorage.removeItem(`puzzle${puzzle}Completed`));
   }
 
   constructor(private http: HttpClient) { }

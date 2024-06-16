@@ -1,6 +1,5 @@
 @import url('https://fonts.googleapis.com/css2?family=Astloch:wght@400;700&display=swap');
 body {
-    background-image: url(fondo.png);
     margin: 0;
     font-family: Roboto, "Helvetica Neue", sans-serif;
 }
@@ -37,9 +36,21 @@ button {
     touch-action: manipulation;
     cursor: help;
     position: absolute;
-    top: 44%;
+    top: 35%;
     right: 8%;
 }
+
+#guardar {
+    position: absolute;
+    top: 40%;
+    right: 10%;
+  }
+  
+  #salir {
+    position: absolute;
+    top: 45%;
+    right: 10%;
+  }
 
 button:hover {
     background-color: #D8B6F9;
@@ -60,7 +71,7 @@ button:active {
 
 .conseguido{
     position: absolute;
-    top: 54%;
+    top: 70%;
     right: 8%;
     background-color: #d7b6f99a;
     
