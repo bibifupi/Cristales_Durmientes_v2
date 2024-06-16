@@ -58,6 +58,7 @@ export class PerfilComponent {
     this.usuarioService.eliminarUsuario(username).subscribe({
       next: response => {
         console.log('Usuario eliminado con éxito', response);
+        this.usuarioService.clearPerfil();
         this.router.navigate(['/login']);
       },
       error: (err) => {
