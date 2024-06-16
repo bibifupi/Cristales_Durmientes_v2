@@ -32,6 +32,10 @@ export class PerfilComponent {
   }
 
   jugar() {
+    this.router.navigate(['/mundo']); 
+
+
+
     // this.usuarioService.updateUser(this.usuario).subscribe({
     //   next: (data) => {
     //     console.log('Respuesta en perfil' ,data);
@@ -48,7 +52,7 @@ export class PerfilComponent {
     this.usuarioService.eliminarUsuario(username).subscribe({
       next: response => {
         console.log('Usuario eliminado con éxito', response);
-        this.router.navigate(['']); 
+        this.router.navigate(['/login']); 
       },
       error: (err) => {
         console.log(err);
