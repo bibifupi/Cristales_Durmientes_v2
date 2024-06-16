@@ -199,7 +199,7 @@ function draw() {
 // Comenzar la partida
 function startGame() {
   game_active = true;
-  puntuacion = 1;
+  puntuacion = 15;
   $score.innerHTML = puntuacion;
   bolsa_piezas = llenarBolsaPiezas();
   pieza = crearPiezaNueva();
