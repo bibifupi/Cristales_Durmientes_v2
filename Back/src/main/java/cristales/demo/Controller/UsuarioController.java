@@ -3,48 +3,33 @@ package cristales.demo.Controller;
 
 import java.util.List;
 
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.CrossOrigin;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-
-import org.springframework.web.bind.annotation.RestController;
+import lombok.extern.slf4j.Slf4j;
 
 import cristales.demo.Service.Usuario.UsuarioServicio;
 import cristales.demo.dto.UsuarioLoginDTO;
 import cristales.demo.dto.UsuarioRegistroDTO;
 import cristales.demo.dto.UsuarioRequestDTO;
 import cristales.demo.dto.UsuarioResponse;
-import lombok.extern.slf4j.Slf4j;
 
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.CrossOrigin;
+import org.springframework.web.bind.annotation.DeleteMapping;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 
-
 @RestController
-@RequestMapping(value = "/api/usuario") //solo gestiona peticiones a Usuario
+@RequestMapping(value = "/api/usuario")
 @CrossOrigin(origins = "http://localhost:4200")
 @Slf4j
 public class UsuarioController {
-    //conexion con el servicio
+
     @Autowired
     UsuarioServicio usuarioServicio;
-
-    //METODOS
-
-    //Busqueda del usuario para cargar datos en el perfil
-    /* @GetMapping ("/{username}")
-    public Usuario getUsuarioByUsername (@PathVariable(value = "username") String username){
-        
-        Usuario usuario = null;
-
-        usuario = usuarioServicio.findByUsername(username);
-
-        return usuario;
-
-    } */
 
     @GetMapping
     public String Bienvenida () {
@@ -77,13 +62,6 @@ public class UsuarioController {
         return usuarioResponse;
     }
 
-    // @GetMapping("/perfil")
-    // public UsuarioResponse perfilUSuario(){
-    //     UsuarioResponse user = null;
-    //     return user;
-    // }
-    
-
     @PutMapping("/update")
     public void updateUser(@RequestBody UsuarioRequestDTO usuarioRequestDTO) {
         
@@ -91,6 +69,12 @@ public class UsuarioController {
 
     }
 
+    @DeleteMapping ("/borrar/{username}")
+    public void borrarUsuario (@PathVariable String username ) {
+
+        usuarioServicio.borrarUsuario(username);
+
+    }
 
     @GetMapping("/ranking")
     public List<UsuarioResponse> rankingUsuarios(){

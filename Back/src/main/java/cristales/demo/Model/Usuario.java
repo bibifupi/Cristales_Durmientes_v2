@@ -24,10 +24,7 @@ import lombok.NoArgsConstructor;
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
-
-//Esta clase User se puede escribir en BD
 @Entity
-//Tabla en la que se apunta
 @Table(name="Usuario")
 public class Usuario implements UserDetails {
 
@@ -50,10 +47,8 @@ public class Usuario implements UserDetails {
     @Column(nullable = false)
     private int idNivel;
     
-    /* FUNCIONES */
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
-    //Devolvemos una lista que contiene un único objeto que da la autoridad al usuario autentificado
       return List.of(new SimpleGrantedAuthority((role.name())));
     }
 
@@ -66,7 +61,6 @@ public class Usuario implements UserDetails {
     public String getUsername() {
         return username;
     }
-
 
     @Override
     public boolean isAccountNonExpired() {

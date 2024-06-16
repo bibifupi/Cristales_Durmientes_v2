@@ -23,17 +23,13 @@ import cristales.demo.dto.UsuarioLoginDTO;
 import cristales.demo.dto.UsuarioRegistroDTO;
 import cristales.demo.dto.UsuarioRequestDTO;
 import cristales.demo.dto.UsuarioResponse;
+import jakarta.transaction.Transactional;
 import lombok.extern.slf4j.Slf4j;
 
 @Slf4j
 @Service
 public class UsuarioServicioImpl implements UsuarioServicio {
 
-    /*
-     * Cuando el objeto no existe para spring (UsuarioRepositorio)
-     * usamos Autowired para que automaticamente se vincule ese objeto conmigo
-     * (UsuarioServicioImpl)
-     */
     @Autowired
     private UsuarioRepositorio usuarioRepositorio;
 
@@ -53,10 +49,7 @@ public class UsuarioServicioImpl implements UsuarioServicio {
         Usuario usuario = findByUsernameAndPassword(usuarioLoginDTO.getUsername(), usuarioLoginDTO.getPassword());
 
         if (usuario != null) {
-            log.info("Encontrado");
             usuarioResponse = getUsuarioJuego(usuario);
-        } else {
-            log.info("no encontrado en Implements");
         }
 
         return usuarioResponse;
@@ -64,7 +57,7 @@ public class UsuarioServicioImpl implements UsuarioServicio {
 
     @Override
     public UsuarioResponse registroUsuario(UsuarioRegistroDTO usuarioRegistroDTO) {
-        log.info("Las contraseñas son diferentes");
+        
         UsuarioResponse usuarioResponse = null;
 
         if (usuarioRegistroDTO.getPassword().equalsIgnoreCase(usuarioRegistroDTO.getRepeatPassword())) {
@@ -78,10 +71,8 @@ public class UsuarioServicioImpl implements UsuarioServicio {
                         .imagen("https://robohash.org/" + usuarioRegistroDTO.getUsername() + "?set=set1")
                         .build();
 
-                // Genera la entrada a la BD y el idUsuario
+                
                 usuarioRepositorio.save(usuario);
-
-                log.info("USUARIO: {}", usuario);
 
                 usuario = findByUsername(usuarioRegistroDTO.getUsername());
 
@@ -99,7 +90,7 @@ public class UsuarioServicioImpl implements UsuarioServicio {
 
                     List<Acertijo> acertijoList = new ArrayList<>();
                     List<AcertijoDTO> acertijoDTOList = new ArrayList<>();
-                    // for porque se guarda más de un acertijo
+                   
                     for (int i = 1; i <= 3; i++) {
 
                         Acertijo acertijo = Acertijo.builder()
@@ -109,7 +100,7 @@ public class UsuarioServicioImpl implements UsuarioServicio {
                                 .idUsuario(usuario.getIdUsuario())
                                 .build();
 
-                        // Guarda el acertijo
+                        
                         acertijoList.add(acertijoServicio.saveAcertijo(acertijo));
 
                         AcertijoDTO acertijoDTO = AcertijoDTO.builder()
@@ -200,13 +191,11 @@ public class UsuarioServicioImpl implements UsuarioServicio {
         return list_ranking;
     }
 
-    // Metdos que van a implementar de la interfaz UsuarioServicio
     private Usuario findByUsername(String username) {
 
         Usuario usuario = null;
         Optional<Usuario> usuarioOptional = usuarioRepositorio.findByUsername(username);
 
-        // isPresent es si existe
         if (usuarioOptional.isPresent()) {
             usuario = usuarioOptional.get();
         }
@@ -217,38 +206,25 @@ public class UsuarioServicioImpl implements UsuarioServicio {
     private Usuario findByUsernameAndPassword(String username, String password) {
 
         Usuario usuario = null;
-        log.info("El usuario es: " + usuario);
 
         Optional<Usuario> usuarioOptional = usuarioRepositorio.findByUsernameAndPassword(username, password);
-        log.info("El repositorio es: " + usuarioRepositorio);
-        log.info(" usuario " + username + " pass " + password);
-        log.info("El Optional es: " + usuarioOptional);
 
         if (usuarioOptional.isPresent()) {
-            log.info("Usuario Optional SI");
             usuario = usuarioOptional.get();
         } else {
-            log.info("Usuario Optional NO");
 
         }
 
         return usuario;
     }
 
-    // Recupera los acertijos que tiene el jugador
     private UsuarioResponse getUsuarioJuego(Usuario usuario) {
 
-        // Buscamos el Jugador por username
-        // Usuario usuario = findByUsername(username);
-
-        // Buscamos el Nivel del jugador por idNivel e idUsuario
         List<Nivel> nivel = nivelServicio.findByIdNivelAndIdUsuario(usuario.getIdNivel(), usuario.getIdUsuario());
 
-        // Buscamos los Acertijos que ha hecho el Jugador por idNivel y idUsuario
         List<Acertijo> acertijoList = acertijoServicio.findByIdNivelAndIdUsuario(usuario.getIdNivel(),
                 usuario.getIdUsuario());
 
-        // Buscamos el Jefe del Jugador por idJefe
         Jefe jefe = jefeServicio.findByIdNivelAndIdUsuario(usuario.getIdNivel(), usuario.getIdUsuario());
 
         JefeDTO jefeDTO = JefeDTO.builder().cristal(jefe.isCristal()).build();
@@ -275,6 +251,14 @@ public class UsuarioServicioImpl implements UsuarioServicio {
                 .build();
 
         return usuarioResponse;
+
+    }
+
+    @Transactional
+    @Override
+    public void borrarUsuario(String username) {
+
+        usuarioRepositorio.deleteByUsername(username);
 
     }
 }

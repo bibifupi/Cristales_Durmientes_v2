@@ -15,9 +15,7 @@ import lombok.NoArgsConstructor;
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
-//Esta clase User se puede escribir en BD
 @Entity
-//Tabla en la que se apunta
 @Table(name="Acertijo")
 public class Acertijo {
     

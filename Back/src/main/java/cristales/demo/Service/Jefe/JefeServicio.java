@@ -1,7 +1,5 @@
 package cristales.demo.Service.Jefe;
 
-import java.util.Optional;
-
 import cristales.demo.Model.Jefe;
 
 public interface JefeServicio {

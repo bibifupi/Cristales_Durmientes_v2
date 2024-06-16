@@ -22,7 +22,6 @@ public class JefeServicioImpl implements JefeServicio{
 
         Optional <Jefe> jefeOptional = jefeRepositorio.findByIdJefe(idJefe);
 
-        //isPresent es si existe
         if(jefeOptional.isPresent()){
             jefe = jefeOptional.get();
         }
@@ -37,7 +36,6 @@ public class JefeServicioImpl implements JefeServicio{
 
         Optional <Jefe> jefeOptional = jefeRepositorio.findByIdNivel(idNivel);
 
-        //isPresent es si existe
         if(jefeOptional.isPresent()){
             jefe = jefeOptional.get();
         }
@@ -67,7 +65,6 @@ public class JefeServicioImpl implements JefeServicio{
 
         Optional <Jefe> jefeOptional = jefeRepositorio.findByIdNivelAndIdUsuario(idNivel, idUsuario);
 
-        //isPresent es si existe
         if(jefeOptional.isPresent()){
             jefe = jefeOptional.get();
         }
@@ -75,7 +72,6 @@ public class JefeServicioImpl implements JefeServicio{
         return jefe;
 
     }
-    
 
     @Override
     public Jefe save(Jefe jefe) {
@@ -83,6 +79,5 @@ public class JefeServicioImpl implements JefeServicio{
         return jefeRepositorio.save(jefe);
 
     }
-
-    
+   
 }
