@@ -72,6 +72,10 @@
     line-height: 1;
 }
 
+h5{
+    text-align: center;
+}
+
 .login input {
     max-width: 100%;
     margin-bottom: 10px;

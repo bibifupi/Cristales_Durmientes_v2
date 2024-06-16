@@ -67,6 +67,10 @@
     padding: 1vw;
 }
 
+h5{
+    text-align: center;
+}
+
 .registro input {
     max-width: 100%;
     margin-bottom: 10px;
