@@ -1,7 +1,5 @@
 package cristales.demo.dto;
 
-//Transformar la infromación JSON al objeto Usuario
-
 import java.io.Serializable;
 
 import lombok.AllArgsConstructor;

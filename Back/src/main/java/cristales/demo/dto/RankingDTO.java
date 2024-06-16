@@ -15,5 +15,4 @@ public class RankingDTO {
     private UsuarioRequestDTO imagen;
     private NivelDTO nivelListDTO;
     
-    
 }
