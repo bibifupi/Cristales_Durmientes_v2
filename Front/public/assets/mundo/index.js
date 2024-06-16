@@ -2,7 +2,7 @@ const canvas = document.querySelector('canvas');
 const context = canvas.getContext('2d');
 
 canvas.width = window.innerWidth;
-canvas.height = window.innerHeight; 
+canvas.height = window.innerHeight;
 
 /*  COLISIONES */
 /*  Colisiones elementos del Mapa */
@@ -154,7 +154,7 @@ playerRightImage.src = "assets/mundo/img/playerRight.png"
 
 const player = new Sprite({
     position: {
-        x: canvas.width /3 - 192 /4 /2.5,  y: canvas.height /1.7 - 68 /2,
+        x: canvas.width / 3 - 192 / 4 / 2.5, y: canvas.height / 1.7 - 68 / 2,
         //x: canvas.width / 3 - 192 / 4 / 2.5, y: canvas.height / 1.6 - 68 / 2,
     },
     image: playerDownImage,
@@ -221,9 +221,9 @@ function animate() {
     player.moving = false;
 
 
-    if(puzzle1Completado)$superado1.hidden=false;
-    if(puzzle2Completado)$superado2.hidden=false;
-    if(puzzle3Completado)$superado3.hidden=false;
+    if (puzzle1Completado) $superado1.hidden = false;
+    if (puzzle2Completado) $superado2.hidden = false;
+    if (puzzle3Completado) $superado3.hidden = false;
 
     /*  Animación de Acertijos */
     /*  ACERTIJO 1 */
@@ -406,29 +406,45 @@ function animate() {
                 })
                 && overlappingAreaTetris > (player.width * player.height) / 2 && Math.random() < 0.01
             ) {
-                console.log('Tetris');
-                alert("Debes demostrar antes tu ingenio");
+                // Comprobar si has superado las tres pruebas
+                if (
+                    !(
+                        checkPuzzle1Status() &&
+                        checkPuzzle2Status() &&
+                        checkPuzzle3Status()
+                    )
+                ) {
+                    console.log("Faltan pruebas que superar antes del Tetris");
+                    alert("Debes demostrar antes tu ingenio");
+                    return;
+                }
 
+                //Comprobar si ya se ha conseguido el cristal
+                if (checkTetriStatus()) {
+                    console.log("Ya superaste al jefe");
+                    alert("Ya conseguiste el cristal");
+                    return;
+                }
 
                 // Inicializar Tetris
-                /* window.cancelAnimationFrame(animationId);
+                window.cancelAnimationFrame(animationId);
                 tetris.initiated = true;
-                gsap.to('#overlappingDiv', {
+                gsap.to("#overlappingDiv", {
                     opacity: 1,
                     repeat: 3,
                     yoyo: true,
                     duration: 0.4,
                     onComplete() {
-                        gsap.to('#overlappingDiv', {
+                        gsap.to("#overlappingDiv", {
                             opacity: 1,
                             duration: 0.4,
                             onComplete() {
                                 animateTetris();
-                            }
+                            },
                         });
-                    }
+                    },
                 });
-                break; */
+                break;
             }
         }
     }

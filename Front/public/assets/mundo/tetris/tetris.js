@@ -199,7 +199,7 @@ function draw() {
 // Comenzar la partida
 function startGame() {
   game_active = true;
-  puntuacion = 15;
+  puntuacion = 1;
   $score.innerHTML = puntuacion;
   bolsa_piezas = llenarBolsaPiezas();
   pieza = crearPiezaNueva();
@@ -288,7 +288,7 @@ function solidificarPieza(letra) {
           lanzarConfetti(10);
           setTimeout(() => {
             window.alert("¡Felicidades, has conseguido el Cristal!");
-            window.location.href = 'N:/2º DAW/Proyecto/Pokemon/Cristales_Durmientes/index.html';
+            window.location.href = '/creditos';
             sessionStorage.setItem('tetrisCompleted', 'true');
           }, 1000);
         }

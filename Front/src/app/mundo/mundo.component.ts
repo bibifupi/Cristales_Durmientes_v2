@@ -61,6 +61,9 @@ export class MundoComponent implements AfterViewInit {
     this.perfil.nivelDTO.acertijoDTOList.forEach(
       (acertijo, index) => { acertijo.superado = sessionStorage.getItem(`puzzle${index + 1}Completed`) == 'true' ? true : false; });
 
+    // Asigna el estado del tetris al perfil del usuario
+    this.perfil.nivelDTO.jefeDTO.cristal = sessionStorage.getItem('tetrisCompleted') == 'true';
+
     console.log('this.perfil:', this.perfil);
 
     // Actualiza el perfil del usuario en sessionStorage

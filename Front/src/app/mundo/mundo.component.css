@@ -123,3 +123,7 @@ button:active {
     color: #B1FFDA;
     text-shadow: 2px 2px 2px #7937ba;
 }
+
+h3{
+    text-align: center;
+}

@@ -38,6 +38,9 @@ export class PerfilComponent {
     this.acertijosSuperados.forEach(
       (superado, index) => { sessionStorage.setItem(`puzzle${index + 1}Completed`, superado ? 'true' : 'false'); });
 
+    // Guarda el estado del tetris en sessionStorage
+    sessionStorage.setItem('tetrisCompleted', this.perfil.nivelDTO.jefeDTO.cristal ? 'true' : 'false');
+
     // Navegamos a Mundo
     this.router.navigate(['/mundo']);
   }
